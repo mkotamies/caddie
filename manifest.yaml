@@ -1,0 +1,7 @@
+---
+applications:
+- name: caddie
+  memory: 512M
+  host: caddie
+  instances: 1
+  path: ./target/caddie-0.0.1-SNAPSHOT.jar
