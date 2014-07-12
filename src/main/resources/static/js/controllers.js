@@ -23,19 +23,21 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             $scope.selectedCourse = course;
         }
 
-        $scope.hcpUp = function(hcpUp) {
+        $scope.hcpUp = function (hcpUp) {
             $scope.hcp = Math.round(($scope.hcp + hcpUp) * 10) / 10;
             $scope.calcGameHcp();
         }
 
-        $scope.hcpDown = function(hcpDown) {
+        $scope.hcpDown = function (hcpDown) {
             $scope.hcp = Math.round(($scope.hcp - hcpDown) * 10) / 10;
             $scope.calcGameHcp();
         }
 
         $scope.calcGameHcp = function () {
 
-            var gameHcp = calcService.calcGameHcp($scope.hcp, $scope.selectedCourse.slope, $scope.selectedCourse.cr, $scope.selectedCourse.par);
+            if ($scope.hcp && $scope.selectedCourse) {
+                var gameHcp = calcService.calculateGameHcp($scope.hcp, $scope.selectedCourse.slope, $scope.selectedCourse.cr, $scope.selectedCourse.par);
+            }
 
             $scope.gameHcp = gameHcp ? gameHcp : "-";
         }
@@ -44,14 +46,14 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             $scope.selectedCourse.courseName = $scope.club.name;
 
             $scope.currentRound = roundService.startRound($scope.selectedCourse);
-            $scope.currentRound.hcp = $scope.hcp;
-            $scope.currentRound.gameHcp = $scope.gameHcp;
+            $scope.currentRound.data.hcp = $scope.hcp;
+            $scope.currentRound.data.gameHcp = $scope.gameHcp;
 
-            var pointsPerHole = Math.floor($scope.currentRound.gameHcp / 18);
-            var extraPointHoles = Math.floor($scope.currentRound.gameHcp % 18);
+            var pointsPerHole = Math.floor($scope.currentRound.data.gameHcp / 18);
+            var extraPointHoles = Math.floor($scope.currentRound.data.gameHcp % 18);
 
-            for (var key in $scope.currentRound.holes) {
-                var hole = $scope.currentRound.holes[key]
+            for (var key in $scope.currentRound.data.holes) {
+                var hole = $scope.currentRound.data.holes[key]
                 hole.gamePar = hole.par + pointsPerHole;
 
                 if (hole.hcp <= extraPointHoles) {
@@ -90,14 +92,14 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
                 return score;
             }
 
-            for (var key in $scope.currentRound.holes) {
-                var strokes = $scope.currentRound.holes[key].strokes;
+            for (var key in $scope.currentRound.data.holes) {
+                var strokes = $scope.currentRound.data.holes[key].strokes;
 
                 if (strokes && strokes != null && strokes != "-") {
                     score += strokes;
                 }
                 else if (strokes == "-") {
-                    score += $scope.currentRound.holes[key].gamePar + 2;
+                    score += $scope.currentRound.data.holes[key].gamePar + 2;
                 }
 
             }
@@ -112,10 +114,10 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
                 return score;
             }
 
-            for (var key in $scope.currentRound.holes) {
+            for (var key in $scope.currentRound.data.holes) {
 
-                if ($scope.currentRound.holes[key].strokes) {
-                    score += $scope.currentRound.holes[key].gamePar;
+                if ($scope.currentRound.data.holes[key].strokes) {
+                    score += $scope.currentRound.data.holes[key].gamePar;
                 }
             }
 
@@ -133,8 +135,8 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
                 return points;
             }
 
-            for (var key in $scope.currentRound.holes) {
-                var hole = $scope.currentRound.holes[key];
+            for (var key in $scope.currentRound.data.holes) {
+                var hole = $scope.currentRound.data.holes[key];
                 var strokes = hole.strokes;
 
                 if (strokes && strokes != null && strokes != "-") {
@@ -152,9 +154,9 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
                 return points;
             }
 
-            for (var key in $scope.currentRound.holes) {
+            for (var key in $scope.currentRound.data.holes) {
 
-                if ($scope.currentRound.holes[key].strokes) {
+                if ($scope.currentRound.data.holes[key].strokes) {
                     points += 2;
                 }
             }
@@ -166,58 +168,15 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             return $scope.roundPoints() - $scope.parPoints();
         }
 
-        $scope.sendRound = function() {
-            roundService.sendRoundData($scope.email, function(error) {
-                if(error) {
-                    toastr.error(error);
-                }
-                else {
-                    toastr.success("Round data sent to email!");
-                }
-            });
-        }
-
-        $scope.init = function () {
-
-            var currentRound = roundService.getCurrentRound();
-
-            if (currentRound) {
-                $scope.currentRound = currentRound;
-
-                $scope.holeNro = 1;
-
-                for (var i = 1; i < 19; i++) {
-                    if (!$scope.currentRound.holes[i].strokes) {
-                        $scope.holeNro = i;
-                        break;
-                    }
-                }
-            }
-            else {
-                //Load available courses
-                courseService.listClubs(function (data, error) {
-                    if (data) {
-                        $scope.clubList = data;
-                    }
-                });
-            }
-
-            $scope.email = roundService.getStoredEmail();
-
-            /*
-            if (navigator.geolocation) {
-                navigator.geolocation.watchPosition($scope.updateLocation, $scope.locationUpdateError);
-            } else {
-                $scope.coordinates = 'GPS not available';
-            }*/
-        }
-
         $scope.$watch('selectedClub', function (newValue, oldValue) {
 
             if (newValue) {
                 courseService.getClubData(newValue, function (data, error) {
                     if (data) {
                         $scope.club = data;
+                    }
+                    else {
+                        toastr.warning(error);
                     }
                 });
             }
@@ -226,19 +185,19 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             }
         });
 
-        $scope.updatePosition = function() {
+        $scope.updatePosition = function () {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition($scope.updateLocation, $scope.locationUpdateError, {enableHighAccuracy : true});
+                navigator.geolocation.getCurrentPosition($scope.updateLocation, $scope.locationUpdateError, {enableHighAccuracy: true});
             } else {
                 $scope.coordinates = 'GPS not available';
             }
         }
 
-        $scope.updateLocation = function(position) {
-            $scope.$apply(function() {
+        $scope.updateLocation = function (position) {
+            $scope.$apply(function () {
                 $scope.coordinates = position.coords;
 
-                if($scope.position) {
+                if ($scope.position) {
                     $scope.calcDistance();
                 }
 
@@ -246,18 +205,19 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             });
         }
 
-        $scope.startTracking = function() {
+        $scope.startTracking = function () {
             $scope.position = {};
             $scope.position.start = $scope.coordinates;
             $scope.position.startAccuracy = $scope.accuracy;
         }
 
-        $scope.stopTracking = function() {
+        $scope.stopTracking = function () {
             $scope.position = null;
         }
 
-        $scope.calcDistance = function() {
 
+        $scope.calcDistance = function () {
+            /*
             var lat1 = $scope.position.start.latitude;
             var lon1 = $scope.position.start.longitude;
 
@@ -267,21 +227,21 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             var R = 6378137; // m
             var φ1 = lat1.toRad();
             var φ2 = lat2.toRad();
-            var Δφ = (lat2-lat1).toRad();
-            var Δλ = (lon2-lon1).toRad();
+            var Δφ = (lat2 - lat1).toRad();
+            var Δλ = (lon2 - lon1).toRad();
 
-            var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+            var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
                 Math.cos(φ1) * Math.cos(φ2) *
-                Math.sin(Δλ/2) * Math.sin(Δλ/2);
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
             var d = R * c;
 
-            $scope.position.distance = d;
+            $scope.position.distance = d;*/
         }
 
-        $scope.locationUpdateError = function(error) {
-            switch(error.code) {
+        $scope.locationUpdateError = function (error) {
+            switch (error.code) {
                 case error.PERMISSION_DENIED:
                     toastr.warning("User denied the request for Geolocation.");
                     break;
@@ -297,6 +257,48 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             }
         }
 
+        $scope.saveRound = function () {
+            roundService.saveRoundData(function (error) {
+                if (error) {
+                    toastr.warning(error);
+                }
+                else {
+                    toastr.info("Round saved successfully!");
+                }
+            });
+        }
+
+        $scope.init = function () {
+
+            var currentRound = roundService.getCurrentRound();
+
+            if (currentRound) {
+                $scope.currentRound = currentRound;
+
+                $scope.holeNro = 1;
+
+                if($scope.currentRound.data) {
+                    for (var i = 1; i < 19; i++) {
+                        if (!$scope.currentRound.data.holes[i].strokes) {
+                            $scope.holeNro = i;
+                            break;
+                        }
+                    }
+                }
+
+            }
+            else {
+                //Load available courses
+                courseService.listClubs(function (data, error) {
+                    if (data) {
+                        $scope.clubList = data;
+                    }
+                });
+            }
+
+        }
+
+
         $scope.$watch('selectedCourse', function (newValue, oldValue) {
             $scope.calcGameHcp();
         });
@@ -309,10 +311,9 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
 
         $scope.init();
 
-        $scope.$watch('currentRound', function (newValue, oldValue) {
-            roundService.saveCurrentRound();
+        $scope.$watch('currentRound.data', function (newValue, oldValue) {
+            roundService.cacheCurrentRound();
         }, true);
-
 
 
     }]);
@@ -345,21 +346,21 @@ controllers.controller('ScorecardController', ['$scope', 'CourseService', 'Round
 controllers.controller('AnalysisController', ['$scope', 'CourseService', 'RoundService', '$location',
     function ($scope, courseService, roundService, $location) {
 
-        $scope.runAnalysis = function() {
-            $scope.analysis = {holesPlayed : 0};
-            $scope.analysis.openings = {left:0,fair:0,right:0,hazard:0,out:0,total:0};
-            $scope.analysis.toGreen = {3: {total: 0, sum: 0},4: {total: 0, sum: 0},5: {total: 0, sum: 0}};
-            $scope.analysis.puts = {3: {total: 0, sum: 0},4: {total: 0, sum: 0},5: {total: 0, sum: 0}};
-            $scope.analysis.average = {3: {total: 0, sum: 0, count: 0},4: {total: 0, sum: 0, count:0},5: {total: 0, sum: 0, count:0}};
+        $scope.runAnalysis = function () {
+            $scope.analysis = {holesPlayed: 0};
+            $scope.analysis.openings = {left: 0, fair: 0, right: 0, hazard: 0, out: 0, total: 0};
+            $scope.analysis.toGreen = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};
+            $scope.analysis.puts = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};
+            $scope.analysis.average = {3: {total: 0, sum: 0, count: 0}, 4: {total: 0, sum: 0, count: 0}, 5: {total: 0, sum: 0, count: 0}};
 
-            angular.forEach(roundService.getCurrentRound().holes, function(hole) {
-                if(hole.strokes) {
+            angular.forEach(roundService.getCurrentRound().holes, function (hole) {
+                if (hole.strokes) {
                     $scope.analysis.holesPlayed++;
-                        $scope.analysis.average[hole.par].count++;
-                        $scope.analysis.average[hole.par].total += hole.gamePar;
-                        $scope.analysis.average[hole.par].sum += hole.strokes;
+                    $scope.analysis.average[hole.par].count++;
+                    $scope.analysis.average[hole.par].total += hole.gamePar;
+                    $scope.analysis.average[hole.par].sum += hole.strokes;
 
-                    if(hole.puts) {
+                    if (hole.puts) {
                         $scope.analysis.toGreen[hole.par].total++;
                         $scope.analysis.toGreen[hole.par].sum += (hole.strokes - hole.puts);
                         $scope.analysis.puts[hole.par].total++;
@@ -367,11 +368,11 @@ controllers.controller('AnalysisController', ['$scope', 'CourseService', 'RoundS
                     }
                 }
 
-                if(hole.opening) {
+                if (hole.opening) {
                     $scope.analysis.openings[hole.opening]++;
                     $scope.analysis.openings["total"]++;
 
-                    if(hole.openingDesc) {
+                    if (hole.openingDesc) {
                         $scope.analysis.openings[hole.openingDesc]++;
                     }
                 }
@@ -381,4 +382,23 @@ controllers.controller('AnalysisController', ['$scope', 'CourseService', 'RoundS
         }
 
         $scope.runAnalysis();
+    }]);
+
+controllers.controller('RoundListController', ['$scope', 'CourseService', 'RoundService', '$location',
+    function ($scope, courseService, roundService, $location) {
+
+       roundService.listRounds(function(data, error) {
+           if(data) {
+               $scope.roundHeaders = data;
+           }
+           else {
+               toastr.warning(error);
+           }
+       });
+    }]);
+
+controllers.controller('ErrorListController', ['$scope', 'ErrorService',
+    function ($scope, errorService) {
+
+        $scope.errors = errorService.errors;
     }]);

@@ -6,6 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta charset="utf-8">
+    <script  type="text/javascript">
+        window.onerror = function (errorMsg, url, lineNumber) {
+            alert(errorMsg + lineNumber);
+            // alert("This is a stack trace! Wow! --> %s", error.stack);
+        };
+    </script>
 
     <link href="css/app.css" rel="stylesheet">
     <link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +32,8 @@
     <div class="collapse navbar-collapse" id="navbar-collapse-01">
         <ul class="nav navbar-nav">
             <li><a href="" ng-click="newRound()">New round</a></li>
+            <li><a href="#/list"> Earlier rounds</a></li>
+            <li><a href="#/errors"> Errors</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav><!-- /navbar -->

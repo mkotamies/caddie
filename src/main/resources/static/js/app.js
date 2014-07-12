@@ -10,10 +10,15 @@ var app = angular.module('web', [
 ]).
     config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'partials/courseselect.html', controller: 'CourseSelectController'});
+        $routeProvider.when('/list', {templateUrl: 'partials/roundlist.html', controller: 'RoundListController'});
         $routeProvider.when('/scorecard', {templateUrl: 'partials/scorecard.html', controller: 'ScorecardController'});
         $routeProvider.when('/analysis', {templateUrl: 'partials/analysis.html', controller: 'AnalysisController'});
+        $routeProvider.when('/errors', {templateUrl: 'partials/errorlist.html', controller: 'ErrorListController'});
         $routeProvider.otherwise({redirectTo: '/'});
-    }]).run(['RoundService', function(roundService) {
+    }]).run(['RoundService', 'ErrorService', function(roundService, errorService) {
+
+        window.onerror = errorService.logError;
+
         toastr.options = {
             "debug": false,
             "positionClass": "toast-bottom-full-width",
