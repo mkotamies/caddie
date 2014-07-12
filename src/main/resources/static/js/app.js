@@ -5,6 +5,7 @@ var app = angular.module('web', [
     'ngRoute',
     'services',
     'controllers',
+    'directives',
     'ngAnimate',
     'ngTouch'
 ]).
@@ -14,6 +15,7 @@ var app = angular.module('web', [
         $routeProvider.when('/scorecard', {templateUrl: 'partials/scorecard.html', controller: 'ScorecardController'});
         $routeProvider.when('/analysis', {templateUrl: 'partials/analysis.html', controller: 'AnalysisController'});
         $routeProvider.when('/errors', {templateUrl: 'partials/errorlist.html', controller: 'ErrorListController'});
+        $routeProvider.when('/about', {templateUrl: 'partials/about.html', controller: 'AboutController'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]).run(['RoundService', 'ErrorService', function(roundService, errorService) {
 
@@ -42,5 +44,18 @@ angular.module('controllers', ['services']);
 app.filter('percentage', ['$filter', function ($filter) {
     return function (input, decimals) {
         return $filter('number')(input * 100, decimals) + '%';
+    };
+}]);
+
+app.filter('result', ['$filter', function ($filter) {
+    return function (input, negativeIsBetter) {
+        alert(input);
+
+        if(input > 0) {
+            return '+' + input;
+        }
+        else {
+            return input;
+        }
     };
 }]);

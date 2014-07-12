@@ -14,6 +14,8 @@ public class RoundData {
 	private String deviceId;
 	private DateTime timestamp;
 	private String caption;
+	private Long strokes;
+	private Long toPar;
 	private String data;
 	
 	public String getId() {
@@ -35,6 +37,14 @@ public class RoundData {
 	public String getData() {
 		return data;
 	}
+	
+	public Long getStrokes() {
+		return strokes;
+	}
+	
+	public Long getToPar() {
+		return toPar;
+	}
 
 	public void generateId() {
 		this.id = UUID.randomUUID().toString();
@@ -46,6 +56,8 @@ public class RoundData {
 		header.id = id;
 		header.caption = caption;
 		header.timestamp = timestamp;
+		header.strokes = strokes;
+		header.toPar = toPar;
 		
 		return header;
 	}

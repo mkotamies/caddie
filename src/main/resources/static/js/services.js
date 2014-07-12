@@ -69,7 +69,7 @@ services.factory('RoundService', ['$http', function ($http) {
         saveRoundData : function(callback   ) {
 
             var request = angular.copy(currentRound);
-            request.deviceId = getDeviceId();
+            request.deviceId = this.getDeviceId();
             request.data = JSON.stringify(currentRound.data);
 
             var caching = this.cacheCurrentRound;
@@ -86,25 +86,48 @@ services.factory('RoundService', ['$http', function ($http) {
                 });
         },
         listRounds : function(callback) {
-            $http.get('/api/rounds/headers?deviceId=' + getDeviceId())
+
+            var deviceId = this.getDeviceId;
+
+            $http.get('/api/rounds/headers?deviceId=' + deviceId())
                 .success(function (data) {
                     callback(data);
                 })
                 .error(function (error) {
                     callback(null, "Failed to load rounds");
                 });
+        },
+        getDeviceId : function() {
+            var id = window.localStorage.getItem("caddie.deviceId");
+
+            if (!id) {
+                id = Math.random().toString(36).substring(7);
+                window.localStorage.setItem("caddie.deviceId", id);
+            }
+
+            return id;
+        },
+        calculateStrokes : function() {
+
+            var strokes = 0;
+            var gamePar = 0;
+
+            angular.forEach(currentRound.data.holes, function(hole) {
+
+                if(hole.strokes && hole.strokes != "-") {
+                    strokes += hole.strokes;
+                    gamePar += hole.gamePar;
+                }
+                else if(hole.strokes == "-"){
+                    strokes += (hole.gamePar+2);
+                    gamePar += hole.gamePar;
+                }
+
+            });
+
+            currentRound.strokes = strokes;
+            currentRound.toPar = strokes - gamePar;
         }
-    }
-
-    function getDeviceId() {
-        var id = window.localStorage.getItem("caddie.deviceId");
-
-        if (!id) {
-            id = Math.random().toString(36).substring(7);
-            window.localStorage.setItem("caddie.deviceId", id);
-        }
-
-        return id;
     }
 }]);
 

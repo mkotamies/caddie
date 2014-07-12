@@ -1,6 +1,17 @@
-<ul class="list-group">
-    <li class="list-group-item" ng-repeat="roundHeader in roundHeaders">
-        <strong>{{roundHeader.caption}} <span class="text-muted pull-right">{{roundHeader.timestamp | date:'dd.MM.'}}</span></strong>
-    </li>
-</ul>
+<div class="text-center">
+    <h2 class="text-center">Rounds</h2>
+
+    <span class="lead text-muted" ng-show="!roundHeaders || roundHeaders.length == 0">Ei tallennettuja kierroksia</span>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="roundHeader in roundHeaders | orderBy:'timestamp':true">
+            <strong> <span class="pull-left text-muted">{{roundHeader.timestamp | date:'dd.MM.'}}</span>
+                {{roundHeader.caption}}
+                <div class="pull-right" style="margin-left: 30px;">{{roundHeader.toPar > 0 ? "+" : ""}}{{roundHeader.toPar}}</div>
+                <div class="pull-right">{{roundHeader.strokes}}</div>
+            </strong>
+
+        </li>
+    </ul>
+</div>
 

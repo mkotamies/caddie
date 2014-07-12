@@ -312,6 +312,7 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
         $scope.init();
 
         $scope.$watch('currentRound.data', function (newValue, oldValue) {
+            roundService.calculateStrokes();
             roundService.cacheCurrentRound();
         }, true);
 
@@ -387,6 +388,8 @@ controllers.controller('AnalysisController', ['$scope', 'CourseService', 'RoundS
 controllers.controller('RoundListController', ['$scope', 'CourseService', 'RoundService', '$location',
     function ($scope, courseService, roundService, $location) {
 
+       $scope.result = 4;
+
        roundService.listRounds(function(data, error) {
            if(data) {
                $scope.roundHeaders = data;
@@ -401,4 +404,12 @@ controllers.controller('ErrorListController', ['$scope', 'ErrorService',
     function ($scope, errorService) {
 
         $scope.errors = errorService.errors;
+    }]);
+
+
+controllers.controller('AboutController', ['$scope', 'RoundService',
+    function ($scope, roundService) {
+
+        $scope.version = '1.2.0';
+        $scope.deviceId = roundService.getDeviceId();
     }]);

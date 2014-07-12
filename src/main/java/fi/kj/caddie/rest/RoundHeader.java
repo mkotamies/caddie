@@ -7,6 +7,8 @@ public class RoundHeader {
 	String id;
 	DateTime timestamp;
 	String caption;
+	Long strokes;
+	Long toPar;
 	
 	public String getId() {
 		return id;
@@ -18,5 +20,13 @@ public class RoundHeader {
 	
 	public String getCaption() {
 		return caption;
+	}
+	
+	public Long getStrokes() {
+		return strokes;
+	}
+	
+	public Long getToPar() {
+		return toPar;
 	}
 }

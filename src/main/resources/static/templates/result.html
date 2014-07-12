@@ -1,0 +1,13 @@
+<div ng-switch="ngModel">
+
+<span ng-switch-when="true" ng-class="{'text-primary' : (!reverse && ngModel > 0) || (reverse && ngModel < 0),
+                'text-warning': (!reverse && ngModel < 0) || (reverse && ngModel > 0)}">
+    {{ngModel > 0 ? "+" : ""}}{{ngModel}}
+</span>
+
+<span ng-switch-when="false" ng-class="{'text-primary' : (!reverse && value() > 0) || (reverse && value() < 0),
+                'text-warning': (!reverse && value() < 0) || (reverse && value() > 0)}">
+    {{ngModel > 0 ? "+" : ""}}{{value()}}
+</span>
+</div>
+

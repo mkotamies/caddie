@@ -1,4 +1,4 @@
-<div class="container" style="margin-left: 15px; margin-right: 15px;" ng-swipe-left="swipeLeft()">
+<div class="container" style="margin-left: 15px; margin-right: 15px; margin-top: 15px;" ng-swipe-left="swipeLeft()">
 <div ng-show="!currentRound" class="animate-show-hide"
      ng-animate="animate">
 
@@ -63,7 +63,7 @@
 
 
 <div class="animate-show-hide" ng-show="currentRound">
-    <div class="row" style="margin-top: -2px;">
+    <div class="row">
         <div class="col-xs-4 text-center">
             <span class="text-muted text-center">Strokes</span>
         </div>
@@ -76,11 +76,11 @@
     </div>
     <div class="row">
     <div class="col-xs-2 text-center">
-        <span class="lead">{{roundScore()}}</span>
+        <span class="lead">{{currentRound.strokes}}</span>
     </div>
     <div class="col-xs-2">
         <span class="h3 text-center"><strong>
-            {{scoreSpec() > 0 ? "+" : ""}}{{scoreSpec()}}</strong></span>
+            {{currentRound.toPar > 0 ? "+" : ""}}{{currentRound.toPar}}</strong></span>
     </div>
     <div class="col-xs-2 text-center" style="height: 30px;border-right: 1px solid lightgrey;"></div>
     <div class="col-xs-2 text-center h3"></div>
@@ -243,7 +243,7 @@
         </button>
     </div>
 </div>
-
+<!--
 <div class="row">
     <h4 class="text-center">Location</h4>
     <div class="col-xs-4">
@@ -258,12 +258,12 @@
     <div class="col-xs-4">
         <button class="btn btn-default btn-block" ng-click="updatePosition()">Update</button>
     </div>
-</div>
+</div>-->
 
 <hr/>
 
-<a href="#/analysis" class="btn btn-default btn-block">Analysis</a>
-<a href="#/scorecard" class="btn btn-default btn-block">Scorecard</a>
+<a href="#/analysis" class="btn btn-primary btn-block">Analysis</a>
+<a href="#/scorecard" class="btn btn-primary btn-block">Scorecard</a>
 
 <hr/>
 
@@ -272,8 +272,6 @@
             ng-click="saveRound()">Save data
     </button>
 </div>
-
-<pre>{{currentRound | json}}</pre>
 
 </div>
 </div>

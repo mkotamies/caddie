@@ -4,21 +4,49 @@
     <title>Caddie</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta charset="utf-8">
-    <script  type="text/javascript">
-        window.onerror = function (errorMsg, url, lineNumber) {
-            alert(errorMsg + lineNumber);
-            // alert("This is a stack trace! Wow! --> %s", error.stack);
-        };
-    </script>
 
     <link href="css/app.css" rel="stylesheet">
     <link href="components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="components/toastr/toastr.min.css" rel="stylesheet">
+    <link href="bower_components/pure/pure-min.css" rel="stylesheet">
+    <link href="css/menu.css" rel="stylesheet">
 
 </head>
 <body>
+
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link glyphicon glyphicon-th-list">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+
+    <div id="menu" ng-controller="NavigationController">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="#">Caddie</a>
+
+            <ul>
+                <li><a class="menu-item" ng-click="newRound()">New</a></li>
+                <li><a class="menu-item" href="#/">Current</a></li>
+                <li><a class="menu-item" href="#/list">List</a></li>
+
+                <li class="menu-item-divided">
+                    <a class="menu-item" href="#/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="main">
+        <div ng-view>
+
+        </div>
+    </div>
+</div>
+
+
+<!--
 <nav class="navbar navbar-inverse" role="navigation" ng-controller="NavigationController">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
@@ -35,15 +63,13 @@
             <li><a href="#/list"> Earlier rounds</a></li>
             <li><a href="#/errors"> Errors</a></li>
         </ul>
-    </div><!-- /.navbar-collapse -->
-</nav><!-- /navbar -->
-<div ng-view>
-
-</div>
+    </div>
+</nav>-->
 
 
 <script src="components/jquery/jquery.min.js"></script>
 <script src="components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="js/menu.js"></script>
 
 <script src="components/angular/angular.js"></script>
 <script src="components/angular-route/angular-route.js"></script>
