@@ -16,16 +16,16 @@
             <tbody>
             <tr ng-repeat="hole in holes() | filter: filterHoles">
                 <td>{{hole}}</td>
-                <td>{{currentRound.holes[hole].par}}</td>
-                <td>{{currentRound.holes[hole].gamePar}}</td>
-                <td>{{currentRound.holes[hole].strokes}}</td>
-                <td>{{currentRound.holes[hole].strokes ?
-                    currentRound.holes[hole].strokes -
-                    currentRound.holes[hole].gamePar : ""}}
+                <td>{{currentRound.data.holes[hole].par}}</td>
+                <td>{{currentRound.data.holes[hole].gamePar}}</td>
+                <td>{{currentRound.data.holes[hole].strokes}}</td>
+                <td>{{currentRound.data.holes[hole].strokes ?
+                    currentRound.data.holes[hole].strokes -
+                    currentRound.data.holes[hole].gamePar : ""}}
                 </td>
-                <td>{{currentRound.holes[hole].strokes ?
-                    currentRound.holes[hole].gamePar -
-                    currentRound.holes[hole].strokes +2 : ""}}
+                <td>{{currentRound.data.holes[hole].strokes ?
+                    currentRound.data.holes[hole].gamePar -
+                    currentRound.data.holes[hole].strokes +2 : ""}}
                 </td>
             </tr>
             </tbody>

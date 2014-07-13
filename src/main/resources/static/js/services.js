@@ -1,10 +1,10 @@
-var services = angular.module('services', ['ngResource']);
+var services = angular.module('services', []);
 
-services.factory('CourseService', ['$http', '$resource', 'ErrorService', function ($http, $resource, errorService) {
+services.factory('CourseService', ['$http', 'ErrorService', function ($http, $resource, errorService) {
 
     return {
         listClubs: function (callback) {
-            callback(["Hill Side Valley", "Paloheinä Golf", "Vihti Golf"]);
+            callback(["Hill Side Valley", "Paloheina Golf", "Vihti Golf"]);
         },
         getClubData: function (club, callback) {
 
@@ -111,6 +111,10 @@ services.factory('RoundService', ['$http', function ($http) {
 
             var strokes = 0;
             var gamePar = 0;
+
+            if(!currentRound || !currentRound.data) {
+                return;
+            }
 
             angular.forEach(currentRound.data.holes, function(hole) {
 

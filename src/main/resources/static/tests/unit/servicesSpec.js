@@ -2,20 +2,22 @@
 
 /* jasmine specs for services go here */
 
-describe('CalcService tests', function() {
+describe('CalcService', function() {
 
-    var calcService;
 
-    beforeEach(function() {
-        module('web');
+    beforeEach(module('web'));
 
-        inject(function(_calcService_) {
-            calcService = _calcService_;
+    var service;
+
+    beforeEach(inject(function(CalcService) {
+        service = CalcService;
+    }));
+
+    describe("calcGameHcp", function() {
+        it('should give game hcp of 20 for Vihti golf with hcp 18,8', function() {
+            var result = service.calcGameHcp(18.8, 127, 71.3, 72);
+            expect(result).toBe(20);
         });
     });
 
-    it('should give game hcp of 20 for Vihti golf with hcp 18,8', function() {
-        var result = calcService.calcGameHcp(18.8, 127, 71.3, 72);
-        expect(result).toBe(20);
-    });
 });

@@ -336,11 +336,11 @@ controllers.controller('ScorecardController', ['$scope', 'CourseService', 'Round
 
         $scope.filterHoles = function (hole) {
 
-            if (!$scope.currentRound || $scope.currentRound == null) {
+            if (!$scope.currentRound) {
                 return false;
             }
 
-            return $scope.currentRound.holes[hole].strokes != null;
+            return $scope.currentRound.data.holes[hole].strokes != null;
         }
     }]);
 
