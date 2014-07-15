@@ -13,4 +13,4 @@ install:
   
 #run tests  
 script:
-  - cd src/main/resources/static && karma start karma.conf.js
+  - cd src/main/resources/static && npm test
