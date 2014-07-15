@@ -14,3 +14,6 @@ install:
 #run tests  
 script:
   - cd src/main/resources/static && npm test
+  
+after_script:
+  - cd src/main/resources/static && cp ./shippable/codecoverage/PhantomJS 1.9.7 (Linux)/coverage.xml ./shippable/codecoverage
