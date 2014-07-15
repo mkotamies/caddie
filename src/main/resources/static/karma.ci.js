@@ -47,7 +47,7 @@ module.exports = function(config) {
         },
 
       junitReporter: {
-          outputFile: 'shippable/testresults/test-results.xml',
+          outputFile: '../../../../shippable/testresults/test-results.xml',
           suite: ''
       },
 

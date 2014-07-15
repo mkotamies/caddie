@@ -50,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/karma.ci.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.64220184" vertical-offset="385" max-vertical-offset="1305">
-              <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
+              <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -754,7 +754,7 @@
     <entry file="file://$PROJECT_DIR$/karma.ci.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64220184" vertical-offset="385" max-vertical-offset="1305">
-          <caret line="49" column="50" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
+          <caret line="49" column="35" selection-start-line="49" selection-start-column="35" selection-end-line="49" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
