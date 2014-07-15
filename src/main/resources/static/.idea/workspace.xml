@@ -49,8 +49,8 @@
       <file leaf-file-name="karma.ci.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/karma.ci.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5045872" vertical-offset="385" max-vertical-offset="1230">
-              <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.47706422" vertical-offset="385" max-vertical-offset="1230">
+              <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -735,8 +735,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/karma.ci.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5045872" vertical-offset="385" max-vertical-offset="1230">
-          <caret line="44" column="42" selection-start-line="44" selection-start-column="42" selection-end-line="44" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.47706422" vertical-offset="385" max-vertical-offset="1230">
+          <caret line="43" column="31" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
