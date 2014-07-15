@@ -4,6 +4,10 @@
   "repository": "https://github.com/kjulin/caddie",
   "devDependencies": {
     "karma": "~0.12.17",
-    "karma-coverage": "~0.2.4"
+    "karma-coverage": "~0.2.4",
+    "karma-phantomjs-launcher": "~0.1.4"
+  },
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start --single-run --browsers PhantomJS"
   }
 }
