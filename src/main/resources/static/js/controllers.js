@@ -344,45 +344,10 @@ controllers.controller('ScorecardController', ['$scope', 'CourseService', 'Round
         }
     }]);
 
-controllers.controller('AnalysisController', ['$scope', 'CourseService', 'RoundService', '$location',
-    function ($scope, courseService, roundService, $location) {
+controllers.controller('AnalysisController', ['$scope', 'RoundService', 'CalcService',
+    function ($scope, roundService, calcService) {
 
-        $scope.runAnalysis = function () {
-            $scope.analysis = {holesPlayed: 0};
-            $scope.analysis.openings = {left: 0, fair: 0, right: 0, hazard: 0, out: 0, total: 0};
-            $scope.analysis.toGreen = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};
-            $scope.analysis.puts = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};
-            $scope.analysis.average = {3: {total: 0, sum: 0, count: 0}, 4: {total: 0, sum: 0, count: 0}, 5: {total: 0, sum: 0, count: 0}};
-
-            angular.forEach(roundService.getCurrentRound().holes, function (hole) {
-                if (hole.strokes) {
-                    $scope.analysis.holesPlayed++;
-                    $scope.analysis.average[hole.par].count++;
-                    $scope.analysis.average[hole.par].total += hole.gamePar;
-                    $scope.analysis.average[hole.par].sum += hole.strokes;
-
-                    if (hole.puts) {
-                        $scope.analysis.toGreen[hole.par].total++;
-                        $scope.analysis.toGreen[hole.par].sum += (hole.strokes - hole.puts);
-                        $scope.analysis.puts[hole.par].total++;
-                        $scope.analysis.puts[hole.par].sum += hole.puts;
-                    }
-                }
-
-                if (hole.opening) {
-                    $scope.analysis.openings[hole.opening]++;
-                    $scope.analysis.openings["total"]++;
-
-                    if (hole.openingDesc) {
-                        $scope.analysis.openings[hole.openingDesc]++;
-                    }
-                }
-
-
-            });
-        }
-
-        $scope.runAnalysis();
+        $scope.analysis = calcService.analyseRound(roundService.getCurrentRound().data);
     }]);
 
 controllers.controller('RoundListController', ['$scope', 'CourseService', 'RoundService', '$location',

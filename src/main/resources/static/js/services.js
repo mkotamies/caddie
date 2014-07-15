@@ -146,6 +146,49 @@ services.factory('CalcService', [function () {
             else {
                 return null;
             }
+        },
+        analyseRound : function (roundData) {
+
+            var analysis = {holesPlayed: 0};
+            analysis.openings = {left: 0, fair: 0, right: 0, hazard: 0, out: 0, total: 0};
+            analysis.toGreen = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};
+            analysis.puts = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};
+            analysis.average = {3: {total: 0, sum: 0, count: 0}, 4: {total: 0, sum: 0, count: 0}, 5: {total: 0, sum: 0, count: 0}};
+
+            angular.forEach(roundData.holes, function (hole) {
+                if (hole.strokes) {
+                    var strokes = hole.strokes;
+
+                    if(hole.strokes == "-") {
+                        strokes = hole.gamePar+2;
+                    }
+
+                    analysis.holesPlayed++;
+                    analysis.average[hole.par].count++;
+                    analysis.average[hole.par].total += hole.gamePar;
+                    analysis.average[hole.par].sum += strokes;
+
+                    if (hole.puts && hole.puts != "-") {
+
+                        analysis.toGreen[hole.par].total++;
+                        analysis.toGreen[hole.par].sum += (strokes - hole.puts);
+                        analysis.puts[hole.par].total++;
+                        analysis.puts[hole.par].sum += hole.puts;
+                    }
+                }
+
+                if (hole.opening) {
+                    analysis.openings[hole.opening]++;
+                    analysis.openings["total"]++;
+
+                    if (hole.openingDesc) {
+                        analysis.openings[hole.openingDesc]++;
+                    }
+                }
+
+            });
+
+            return analysis;
         }
     }
 }]);

@@ -1,0 +1,9 @@
+{
+  "name": "Caddie",
+  "description": "Caddie to calculate round scores in golf.",
+  "repository": "https://github.com/kjulin/caddie",
+  "devDependencies": {
+    "karma": "~0.12.17",
+    "karma-coverage": "~0.2.4"
+  }
+}
