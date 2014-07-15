@@ -7,6 +7,10 @@ language: node_js
 # version numbers
 node_js:
   - "0.11"
+
+install: 
+  - cd src/main/resources/static && npm install
   
 #run tests  
-script: npm test
+script:
+  - cd src/main/resources/static && karma start karma.conf.js
