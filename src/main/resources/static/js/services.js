@@ -10,12 +10,12 @@ services.factory('CourseService', ['$http', 'ErrorService', function ($http, $re
 
             $http.get('./clubs.json')
                 .success(function (data) {
-
                     callback(_.find(data, function (elem) {
                         return elem.name == club;
                     }));
                 })
                 .error(function (error) {
+                    console.log("Error " + error);
                     errorService.logError(error, null, null);
                     callback("Failed to load club info!")
                 })

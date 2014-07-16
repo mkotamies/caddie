@@ -1,0 +1,605 @@
+[
+    {
+        "name" : "Vihti Golf",
+        "courses" : [
+            {
+                "tee": "yellow",
+                "slope": 127,
+                "cr": 71.3,
+                "par" : 72,
+                "holes": {
+                    "1": {
+                        "par": 4,
+                        "length": 319,
+                        "hcp": 5
+                    },
+                    "2": {
+                        "par": 4,
+                        "length": 372,
+                        "hcp": 2
+                    },
+                    "3": {
+                        "par": 4,
+                        "length": 365,
+                        "hcp": 4
+                    },
+                    "4": {
+                        "par": 3,
+                        "length": 197,
+                        "hcp": 1
+                    },
+                    "5": {
+                        "par": 5,
+                        "length": 506,
+                        "hcp": 7
+                    },
+                    "6": {
+                        "par": 5,
+                        "length": 468,
+                        "hcp": 9
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 313,
+                        "hcp": 15
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 131,
+                        "hcp": 18
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 344,
+                        "hcp": 12
+                    },
+                    "10": {
+                        "par": 4,
+                        "length": 318,
+                        "hcp": 8
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 149,
+                        "hcp": 10
+                    },
+                    "12": {
+                        "par": 4,
+                        "length": 337,
+                        "hcp": 11
+                    },
+                    "13": {
+                        "par": 5,
+                        "length": 430,
+                        "hcp": 14
+                    },
+                    "14": {
+                        "par": 4,
+                        "length": 334,
+                        "hcp": 3
+                    },
+                    "15": {
+                        "par": 5,
+                        "length": 476,
+                        "hcp": 17
+                    },
+                    "16": {
+                        "par": 4,
+                        "length": 319,
+                        "hcp": 16
+                    },
+                    "17": {
+                        "par": 3,
+                        "length": 153,
+                        "hcp": 8
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 322,
+                        "hcp": 13
+                    }
+                }
+            },
+            {
+                "tee": "red",
+                "slope": 119,
+                "cr": 67.4,
+                "par" : 72,
+                "holes": {
+                    "1": {
+                        "par": 4,
+                        "length": 284,
+                        "hcp": 5
+                    },
+                    "2": {
+                        "par": 4,
+                        "length": 322,
+                        "hcp": 2
+                    },
+                    "3": {
+                        "par": 4,
+                        "length": 311,
+                        "hcp": 4
+                    },
+                    "4": {
+                        "par": 3,
+                        "length": 166,
+                        "hcp": 1
+                    },
+                    "5": {
+                        "par": 5,
+                        "length": 432,
+                        "hcp": 7
+                    },
+                    "6": {
+                        "par": 5,
+                        "length": 409,
+                        "hcp": 9
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 257,
+                        "hcp": 15
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 115,
+                        "hcp": 18
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 303,
+                        "hcp": 12
+                    },
+                    "10": {
+                        "par": 4,
+                        "length": 287,
+                        "hcp": 8
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 118,
+                        "hcp": 10
+                    },
+                    "12": {
+                        "par": 4,
+                        "length": 318,
+                        "hcp": 11
+                    },
+                    "13": {
+                        "par": 5,
+                        "length": 389,
+                        "hcp": 14
+                    },
+                    "14": {
+                        "par": 4,
+                        "length": 296,
+                        "hcp": 3
+                    },
+                    "15": {
+                        "par": 5,
+                        "length": 411,
+                        "hcp": 17
+                    },
+                    "16": {
+                        "par": 4,
+                        "length": 282,
+                        "hcp": 16
+                    },
+                    "17": {
+                        "par": 3,
+                        "length": 132,
+                        "hcp": 8
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 269,
+                        "hcp": 13
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name": "Hill Side Valley",
+        "courses": [
+            {
+                "tee": "yellow",
+                "slope": 123,
+                "cr": 71.1,
+                "par" : 71,
+                "holes": {
+                    "1": {
+                        "par": 3,
+                        "length": 145,
+                        "hcp": 9
+                    },
+                    "2": {
+                        "par": 4,
+                        "length": 349,
+                        "hcp": 1
+                    },
+                    "3": {
+                        "par": 5,
+                        "length": 480,
+                        "hcp": 7
+                    },
+                    "4": {
+                        "par": 3,
+                        "length": 212,
+                        "hcp": 3
+                    },
+                    "5": {
+                        "par": 4,
+                        "length": 390,
+                        "hcp": 5
+                    },
+                    "6": {
+                        "par": 5,
+                        "length": 436,
+                        "hcp": 15
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 338,
+                        "hcp": 13
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 150,
+                        "hcp": 17
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 318,
+                        "hcp": 11
+                    },
+                    "10": {
+                        "par": 3,
+                        "length": 146,
+                        "hcp": 18
+                    },
+                    "11": {
+                        "par": 5,
+                        "length": 441,
+                        "hcp": 8
+                    },
+                    "12": {
+                        "par": 3,
+                        "length": 147,
+                        "hcp": 16
+                    },
+                    "13": {
+                        "par": 5,
+                        "length": 460,
+                        "hcp": 6
+                    },
+                    "14": {
+                        "par": 4,
+                        "length": 274,
+                        "hcp": 14
+                    },
+                    "15": {
+                        "par": 4,
+                        "length": 282,
+                        "hcp": 12
+                    },
+                    "16": {
+                        "par": 4,
+                        "length": 358,
+                        "hcp": 4
+                    },
+                    "17": {
+                        "par": 4,
+                        "length": 316,
+                        "hcp": 10
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 333,
+                        "hcp": 2
+                    }
+                }
+            },
+            {
+                "tee": "red",
+                "slope": 115,
+                "cr": 66.9,
+                "par" : 71,
+                "holes": {
+                    "1": {
+                        "par": 3,
+                        "length": 113,
+                        "hcp": 9
+                    },
+                    "2": {
+                        "par": 4,
+                        "length": 314,
+                        "hcp": 1
+                    },
+                    "3": {
+                        "par": 5,
+                        "length": 401,
+                        "hcp": 7
+                    },
+                    "4": {
+                        "par": 3,
+                        "length": 154,
+                        "hcp": 3
+                    },
+                    "5": {
+                        "par": 4,
+                        "length": 324,
+                        "hcp": 5
+                    },
+                    "6": {
+                        "par": 5,
+                        "length": 370,
+                        "hcp": 15
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 292,
+                        "hcp": 13
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 136,
+                        "hcp": 17
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 265,
+                        "hcp": 11
+                    },
+                    "10": {
+                        "par": 3,
+                        "length": 115,
+                        "hcp": 18
+                    },
+                    "11": {
+                        "par": 5,
+                        "length": 390,
+                        "hcp": 8
+                    },
+                    "12": {
+                        "par": 3,
+                        "length": 126,
+                        "hcp": 16
+                    },
+                    "13": {
+                        "par": 5,
+                        "length": 394,
+                        "hcp": 6
+                    },
+                    "14": {
+                        "par": 4,
+                        "length": 242,
+                        "hcp": 14
+                    },
+                    "15": {
+                        "par": 4,
+                        "length": 218,
+                        "hcp": 12
+                    },
+                    "16": {
+                        "par": 4,
+                        "length": 304,
+                        "hcp": 4
+                    },
+                    "17": {
+                        "par": 4,
+                        "length": 285,
+                        "hcp": 10
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 297,
+                        "hcp": 2
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "Paloheina Golf",
+        "courses" : [
+            {
+                "tee": "yellow",
+                "slope": 117,
+                "cr": 68.3,
+                "par" : 72,
+                "holes": {
+                    "1": {
+                        "par": 4,
+                        "length": 284,
+                        "hcp": 15
+                    },
+                    "2": {
+                        "par": 3,
+                        "length": 154,
+                        "hcp": 7
+                    },
+                    "3": {
+                        "par": 5,
+                        "length": 477,
+                        "hcp": 1
+                    },
+                    "4": {
+                        "par": 5,
+                        "length": 447,
+                        "hcp": 3
+                    },
+                    "5": {
+                        "par": 3,
+                        "length": 110,
+                        "hcp": 17
+                    },
+                    "6": {
+                        "par": 5,
+                        "length": 448,
+                        "hcp": 5
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 339,
+                        "hcp": 13
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 141,
+                        "hcp": 11
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 345,
+                        "hcp": 9
+                    },
+                    "10": {
+                        "par": 4,
+                        "length": 284,
+                        "hcp": 16
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 154,
+                        "hcp": 8
+                    },
+                    "12": {
+                        "par": 5,
+                        "length": 477,
+                        "hcp": 2
+                    },
+                    "13": {
+                        "par": 5,
+                        "length": 447,
+                        "hcp": 4
+                    },
+                    "14": {
+                        "par": 3,
+                        "length": 110,
+                        "hcp": 18
+                    },
+                    "15": {
+                        "par": 5,
+                        "length": 448,
+                        "hcp": 6
+                    },
+                    "16": {
+                        "par": 4,
+                        "length": 339,
+                        "hcp": 14
+                    },
+                    "17": {
+                        "par": 3,
+                        "length": 141,
+                        "hcp": 12
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 345,
+                        "hcp": 10
+                    }
+                }
+            },
+            {
+                "tee": "red",
+                "slope": 108,
+                "cr": 63.6,
+                "par" : 72,
+                "holes": {
+                    "1": {
+                        "par": 4,
+                        "length": 194,
+                        "hcp": 15
+                    },
+                    "2": {
+                        "par": 3,
+                        "length": 119,
+                        "hcp": 7
+                    },
+                    "3": {
+                        "par": 5,
+                        "length": 332,
+                        "hcp": 1
+                    },
+                    "4": {
+                        "par": 5,
+                        "length": 311,
+                        "hcp": 3
+                    },
+                    "5": {
+                        "par": 3,
+                        "length": 78,
+                        "hcp": 17
+                    },
+                    "6": {
+                        "par": 5,
+                        "length": 362,
+                        "hcp": 5
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 237,
+                        "hcp": 13
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 95,
+                        "hcp": 11
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 267,
+                        "hcp": 9
+                    },
+                    "10": {
+                        "par": 4,
+                        "length": 194,
+                        "hcp": 16
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 119,
+                        "hcp": 8
+                    },
+                    "12": {
+                        "par": 5,
+                        "length": 332,
+                        "hcp": 2
+                    },
+                    "13": {
+                        "par": 5,
+                        "length": 311,
+                        "hcp": 4
+                    },
+                    "14": {
+                        "par": 3,
+                        "length": 78,
+                        "hcp": 18
+                    },
+                    "15": {
+                        "par": 5,
+                        "length": 362,
+                        "hcp": 6
+                    },
+                    "16": {
+                        "par": 4,
+                        "length": 237,
+                        "hcp": 14
+                    },
+                    "17": {
+                        "par": 3,
+                        "length": 95,
+                        "hcp": 12
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 267,
+                        "hcp": 10
+                    }
+                }
+            }
+        ]
+    }
+]
