@@ -82,7 +82,7 @@
         <span class="text-muted text-center">Points</span>
     </div>
 </div>
-<div class="row">
+<div class="row" style="border-bottom: 1px solid lightgrey; padding-bottom: 5px;">
     <div class="col-xs-2 text-center">
         <span class="lead">{{currentRound.strokes}}</span>
     </div>
@@ -101,18 +101,16 @@
     </div>
 </div>
 
-<hr/>
-
 <div class="row" style="font-weight: bold;">
-    <div class="col-xs-3 text-center lead">Hole {{holeNro}}</div>
-    <div class="col-xs-3 text-center lead">Par
+    <div class="col-xs-3 text-center">Hole {{holeNro}}</div>
+    <div class="col-xs-3 text-center">Par
         {{currentRound.data.holes[holeNro].gamePar}}
         <span class="text-muted" style="font-size: 12px;">({{currentRound.data.holes[holeNro].par}})</span>
     </div>
-    <div class="col-xs-3 text-center lead">
+    <div class="col-xs-3 text-center">
         {{currentRound.data.holes[holeNro].length}}m
     </div>
-    <div class="col-xs-3 text-center lead">Hcp
+    <div class="col-xs-3 text-center">Hcp
         {{currentRound.data.holes[holeNro].hcp}}
     </div>
 </div>

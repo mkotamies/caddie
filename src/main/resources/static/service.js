@@ -49,5 +49,5 @@ app.use(function(err, req, res, next) {
     res.send(500, 'Something broke!');
 });
 
-app.listen(8888);
-console.log('\nCaddie started. Listening on port 8888.');
+app.listen(process.env.VCAP_APP_PORT || 3000);
+console.log('\nCaddie started..');
