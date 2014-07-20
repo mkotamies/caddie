@@ -193,6 +193,52 @@ services.factory('CalcService', [function () {
     }
 }]);
 
+services.factory('ProfileService', [function () {
+
+    var clubs = {
+        woods : ["W1", "W2", "W3", "W4", "W5", "W6", "W7"],
+        irons : ["I3", "I4", "I5", "I6", "I7", "I8", "I9"],
+        wedges : ["PW", "GW", "SW", "LW"]
+    };
+
+    return {
+        listAllClubs : function() {
+            return clubs;
+        },
+        getClubs : function() {
+            var profileClubs = window.localStorage.getItem("caddie.profile.clubs");
+
+            if(profileClubs) {
+                return JSON.parse(profileClubs);
+            }
+            else {
+                var all = this.listAllClubs();
+                var clubs = _.union(all.woods, all.irons, all.wedges);
+                return {
+                    opening: angular.copy(clubs),
+                    approach: angular.copy(clubs),
+                    chip: angular.copy(clubs)
+                }
+            }
+        },
+        saveClubSelection : function(clubs) {
+            window.localStorage.setItem("caddie.profile.clubs", JSON.stringify(clubs));
+        },
+        resetClubSelection : function() {
+            window.localStorage.removeItem("caddie.profile.clubs");
+        },
+        getChipClubs : function() {
+            return this.getClubs().chip;
+        },
+        getOpeningClubs : function() {
+            return this.getClubs().opening;
+        },
+        getApproachClubs : function() {
+            return this.getClubs().approach;
+        }
+    }
+}]);
+
 services.factory('ErrorService', [function () {
 
     var errors = [];

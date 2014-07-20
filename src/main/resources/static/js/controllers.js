@@ -11,10 +11,14 @@ controllers.controller('NavigationController', ['$scope', 'RoundService', '$loca
     }]);
 
 
-controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'RoundService', '$location', 'CalcService',
-    function ($scope, courseService, roundService, $location, calcService) {
+controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'RoundService', '$location', 'CalcService', 'ProfileService',
+    function ($scope, courseService, roundService, $location, calcService, profileService) {
 
         $scope.gameRunning = false;
+        $scope.putValues = [0,1,2,3,4,5,6];
+        $scope.totalValues = [1,2,3,4,5,6,7,8,9];
+        $scope.openPart = null;
+
         var hcp = courseService.loadHcp();
         $scope.hcp = hcp != null ? parseFloat(hcp) : 54.0;
         $scope.gameHcp = "-";
@@ -82,6 +86,8 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             else {
                 $scope.holeNro = 1;
             }
+
+            $('#opening').collapse('show');
         }
 
         $scope.roundScore = function () {
@@ -268,6 +274,61 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             });
         }
 
+        $scope.calculateHoleTotal = function() {
+            var hole = $scope.currentRound.data.holes[$scope.holeNro];
+
+            var total = 0;
+
+            if(hole.opening) {
+                total += hole.opening.length;
+            }
+
+            if(hole.approach) {
+                total += hole.approach.length;
+            }
+
+            if(hole.chip) {
+                total += hole.chip.length;
+            }
+
+            if(hole.puts) {
+                total += hole.puts;
+            }
+
+            hole.strokes = total;
+        }
+
+        $scope.filled = function(filledPart) {
+
+            if(filledPart == 'opening') {
+                $('#' + filledPart).collapse('hide');
+
+                if($scope.currentRound.data.holes[$scope.holeNro].par == 3) {
+                    $('#puts').collapse('show');
+                }
+                else {
+                    $('#approach').collapse('show');
+                }
+            }
+            else if(filledPart == 'approach') {
+                if($scope.currentRound.data.holes[$scope.holeNro].par == 4) {
+                    $('#' + filledPart).collapse('hide');
+                    $('#puts').collapse('show');
+                }
+                else if($scope.currentRound.data.holes[$scope.holeNro].approach &&
+                    $scope.currentRound.data.holes[$scope.holeNro].approach.length == 2){
+                    $('#' + filledPart).collapse('hide');
+                    $('#puts').collapse('show');
+                }
+            }
+            else if(filledPart == 'chip') {
+                $('#chip').collapse('hide');
+            }
+            else if(filledPart == 'puts') {
+                $('#puts').collapse('hide');
+            }
+        }
+
         $scope.init = function () {
 
             var currentRound = roundService.getCurrentRound();
@@ -296,6 +357,10 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
                 });
             }
 
+            $scope.chipClubs = profileService.getChipClubs();
+            $scope.approachClubs = profileService.getApproachClubs();
+            $scope.openingClubs = profileService.getOpeningClubs();
+
         }
 
 
@@ -312,6 +377,7 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
         $scope.init();
 
         $scope.$watch('currentRound.data', function (newValue, oldValue) {
+            $scope.calculateHoleTotal();
             roundService.calculateStrokes();
             roundService.cacheCurrentRound();
         }, true);
@@ -363,6 +429,24 @@ controllers.controller('RoundListController', ['$scope', 'CourseService', 'Round
                toastr.warning(error);
            }
        });
+    }]);
+
+controllers.controller('SettingsController', ['$scope', 'ProfileService',
+    function ($scope, profileService) {
+
+
+        $scope.init = function() {
+            var clubs = profileService.listAllClubs();
+            $scope.allClubs = _.union(clubs.woods, clubs.irons, clubs.wedges);
+
+            $scope.clubs = profileService.getClubs();
+        }
+
+        $scope.$watch('clubs', function(newValue) {
+            profileService.saveClubSelection($scope.clubs);
+        }, true)
+
+        $scope.init();
     }]);
 
 controllers.controller('ErrorListController', ['$scope', 'ErrorService',

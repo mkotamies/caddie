@@ -1,0 +1,11 @@
+<div class="row text-center" style="margin-left: 15px; margin-right: 15px;">
+    <div class="btn-group">
+        <button ng-repeat="club in clubs" id="{{club}}" type="button" class="btn btn-sm btn-default"
+
+                ng-click="addClub(club)">{{club}}
+        </button>
+    </div>
+    <div id="clubList" ng-click="removeClub()" style="margin-top: 8px;">
+        <span ng-repeat="club in selection track by $index" style="margin-right: 15px;">{{$index +1}}: <strong>{{club}}</strong></span>
+    </div>
+</div>

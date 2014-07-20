@@ -1,0 +1,9 @@
+<div class="row" style="margin-left: 15px; margin-right: 15px;">
+    <div class="btn-group">
+        <button ng-repeat="value in values" id="{{value}}" type="button" class="btn btn-sm btn-default"
+                ng-class="{'btn-primary' : multiselect && selections.indexOf(value) != -1,
+                           'btn-primary' : !multiselect && selections == value}"
+                ng-click="valueClicked(value)">{{value}}
+        </button>
+    </div>
+</div>

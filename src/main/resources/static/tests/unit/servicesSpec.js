@@ -100,3 +100,63 @@ describe('CalcService', function() {
     });
 
 });
+
+describe('ProfileService', function() {
+
+
+    beforeEach(module('web'));
+
+    var service;
+    var roundService;
+    var courseService;
+
+    beforeEach(inject(function(ProfileService) {
+        service = ProfileService;
+        service.resetClubSelection();
+    }));
+
+    describe("listing clubs", function() {
+        it('should give 7 woods, 7 irons and four wedges as all possible clubs', function() {
+            var clubs = service.listAllClubs();
+            expect(clubs.woods.length).toBe(7);
+            expect(clubs.irons.length).toBe(7);
+            expect(clubs.wedges.length).toBe(4);
+        });
+
+        it("should give all clubs if no save has been made", function() {
+            var profileClubs = service.getClubs();
+            expect(profileClubs).toEqual(service.listAllClubs());
+        });
+
+        it("should give modified club list after modification", function() {
+            var clubs = service.getClubs();
+            clubs.woods.splice(1,1);
+            clubs.irons.splice(0, 3);
+            clubs.wedges.splice(1, 1);
+            service.saveClubSelection(clubs);
+
+            var profileClubs = service.getClubs();
+
+            expect(profileClubs.woods.length).toBe(6);
+            expect(profileClubs.irons.length).toBe(4);
+            expect(profileClubs.wedges.length).toBe(3);
+        });
+
+        it("should give irons and wedges as chip clubs", function() {
+           var chipClubs = service.getChipClubs();
+           expect(chipClubs.length).toBe(11);
+        });
+
+        it("should only give clubs from users selection when asking chip clubs", function() {
+            var clubs = service.getClubs();
+            clubs.woods.splice(1,1);
+            clubs.irons.splice(0, 3);
+            clubs.wedges.splice(1, 1);
+            service.saveClubSelection(clubs);
+
+            var chipClubs = service.getChipClubs();
+            expect(chipClubs.length).toBe(7);
+        });
+    });
+
+});

@@ -1,0 +1,7 @@
+<div class="rowheader row bg-info" data-toggle="collapse" data-target="{{collapseTarget}}">
+    <h3 class="col-xs-6">{{title}}</h3>
+    <h3 class="col-xs-6" ng-show="array && array.length > 0">{{array.join(', ')}}</h3>
+    <h3 class="col-xs-6" ng-show="value">{{value}}</h3>
+    <h3 class="col-xs-6" ng-show="(!array || array.length == 0) && !value">-</h3>
+    </strong>
+</div>

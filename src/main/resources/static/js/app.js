@@ -15,6 +15,7 @@ var app = angular.module('web', [
         $routeProvider.when('/scorecard', {templateUrl: 'partials/scorecard.html', controller: 'ScorecardController'});
         $routeProvider.when('/analysis', {templateUrl: 'partials/analysis.html', controller: 'AnalysisController'});
         $routeProvider.when('/errors', {templateUrl: 'partials/errorlist.html', controller: 'ErrorListController'});
+        $routeProvider.when('/settings', {templateUrl: 'partials/settings.html', controller: 'SettingsController'});
         $routeProvider.when('/about', {templateUrl: 'partials/about.html', controller: 'AboutController'});
         $routeProvider.otherwise({redirectTo: '/'});
     }]).run(['RoundService', 'ErrorService', function(roundService, errorService) {

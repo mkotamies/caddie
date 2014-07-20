@@ -3,6 +3,7 @@
      ng-animate="animate">
 
     <h4 class="text-center">Course</h4>
+
     <div class="row">
 
         <select class="form-control" ng-model="selectedClub">
@@ -13,6 +14,7 @@
 
     <div class="row" ng-show="club != null">
         <h4 class="text-center">Tee</h4>
+
         <div class="btn-group" style="width: 100%;">
             <button ng-repeat="course in club.courses" class="btn btn-default"
                     ng-click="selectCourse(course)"
@@ -27,29 +29,35 @@
 
     <div class="row" ng-show="selectedCourse != null">
         <h4 class="text-center">HCP</h4>
+
         <div class="col-xs-2">
             <button class="btn btn-sm btn-default" style="margin-top: 22px;"
-                    ng-click="hcpDown(1)"><<</button>
+                    ng-click="hcpDown(1)"><<
+            </button>
         </div>
         <div class="col-xs-2">
             <button class="btn btn-sm btn-default" style="margin-top: 22px;"
-                    ng-click="hcpDown(0.1)"><</button>
+                    ng-click="hcpDown(0.1)"><
+            </button>
         </div>
         <div class="col-xs-4">
             <h2 class="text-center">{{hcp}}</h2>
         </div>
         <div class="col-xs-2">
             <button class="btn btn-sm btn-default" style="margin-top: 22px;"
-                    ng-click="hcpUp(0.1)">></button>
+                    ng-click="hcpUp(0.1)">>
+            </button>
         </div>
         <div class="col-xs-2">
             <button class="btn btn-sm btn-default" style="margin-top: 22px;"
-                    ng-click="hcpUp(1)">>></button>
+                    ng-click="hcpUp(1)">>>
+            </button>
         </div>
     </div>
 
     <div class="row" ng-show="selectedCourse != null">
         <h4 class="text-center">Game HCP:</h4>
+
         <h2 style="text-align: center;">{{gameHcp}}</h2>
     </div>
 
@@ -63,18 +71,18 @@
 
 
 <div class="animate-show-hide" ng-show="currentRound">
-    <div class="row">
-        <div class="col-xs-4 text-center">
-            <span class="text-muted text-center">Strokes</span>
-        </div>
-        <div class="col-xs-4">
-            <h4 class="text-center" style="margin-top: -10px;">{{currentRound.data.courseName}}</h4>
-        </div>
-        <div class="col-xs-4 text-center">
-            <span class="text-muted text-center">Points</span>
-        </div>
+<div class="row">
+    <div class="col-xs-4 text-center">
+        <span class="text-muted text-center">Strokes</span>
     </div>
-    <div class="row">
+    <div class="col-xs-4">
+        <h4 class="text-center" style="margin-top: -10px;">{{currentRound.data.courseName}}</h4>
+    </div>
+    <div class="col-xs-4 text-center">
+        <span class="text-muted text-center">Points</span>
+    </div>
+</div>
+<div class="row">
     <div class="col-xs-2 text-center">
         <span class="lead">{{currentRound.strokes}}</span>
     </div>
@@ -96,139 +104,90 @@
 <hr/>
 
 <div class="row" style="font-weight: bold;">
-    <div class="col-xs-3 text-center">Hole {{holeNro}}</div>
-    <div class="col-xs-3 text-center">Par
+    <div class="col-xs-3 text-center lead">Hole {{holeNro}}</div>
+    <div class="col-xs-3 text-center lead">Par
         {{currentRound.data.holes[holeNro].gamePar}}
-        <span class="text-muted" style="font-size: 10px;">({{currentRound.data.holes[holeNro].par}})</span>
+        <span class="text-muted" style="font-size: 12px;">({{currentRound.data.holes[holeNro].par}})</span>
     </div>
-    <div class="col-xs-3 text-center">
+    <div class="col-xs-3 text-center lead">
         {{currentRound.data.holes[holeNro].length}}m
     </div>
-    <div class="col-xs-3 text-center">Hcp
+    <div class="col-xs-3 text-center lead">Hcp
         {{currentRound.data.holes[holeNro].hcp}}
     </div>
 </div>
-<hr/>
-<h5 class="text-center">Opening</h5>
-<div class="row">
-    <div class="col-xs-4">
-        <button type="button" class="btn btn-sm btn-block btn-default"
-                ng-click="currentRound.data.holes[holeNro].opening = 'left'"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'left'}">Left
-        </button>
-    </div>
-    <div class="col-xs-4">
-        <button type="button" class="btn btn-sm btn-block btn-default"
-                ng-click="currentRound.data.holes[holeNro].opening = 'fair'"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'fair'}">Fair
-        </button>
-    </div>
-    <div class="col-xs-4">
-        <button type="button" class="btn btn-sm btn-block btn-default"
-                ng-click="currentRound.data.holes[holeNro].opening = 'right'"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'right'}">Right
-        </button>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-2">
+<rowheader title="Opening" array="currentRound.data.holes[holeNro].opening" collapse-target="#opening"></rowheader>
 
-    </div>
-    <div class="col-xs-4">
-        <button type="button" class="btn btn-sm btn-block btn-default"
-                ng-click="currentRound.data.holes[holeNro].openingDesc = currentRound.data.holes[holeNro].openingDesc == 'hazard' ? null : 'hazard'"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].openingDesc == 'hazard'}">Hazard
-        </button>
-    </div>
-    <div class="col-xs-4">
-        <button type="button" class="btn btn-sm btn-block btn-default"
-                ng-click="currentRound.data.holes[holeNro].openingDesc = currentRound.data.holes[holeNro].openingDesc == 'out' ? null : 'out'"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].openingDesc == 'out'}">Out
-        </button>
-    </div>
-    <div class="col-xs-2">
+<div id="opening" class="row collapse collapse-content"
+     ng-class="{'in' : openPart == 'opening'}">
+    <clubselector selection="currentRound.data.holes[holeNro].opening" clubs="openingClubs" callback="filled('opening')"/>
 
+    <!--
+    <div class="row">
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-sm btn-block btn-default"
+                    ng-click="currentRound.data.holes[holeNro].opening = 'left'"
+                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'left'}">Left
+            </button>
+        </div>
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-sm btn-block btn-default"
+                    ng-click="currentRound.data.holes[holeNro].opening = 'fair'"
+                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'fair'}">Fair
+            </button>
+        </div>
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-sm btn-block btn-default"
+                    ng-click="currentRound.data.holes[holeNro].opening = 'right'"
+                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'right'}">Right
+            </button>
+        </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-xs-2">
 
-<h5 class="text-center">Puts</h5>
-<div class="row text-center">
-    <div class="btn-group">
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].puts = 0"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].puts == 0}">0
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].puts = 1"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].puts == 1}">1
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].puts = 2"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].puts == 2}">2
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].puts = 3"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].puts == 3}">3
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].puts = 4"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].puts == 4}">4
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].puts = 5"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].puts == 5}">5
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].puts = '-'"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].puts == '-'}">-
-        </button>
-    </div>
+        </div>
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-sm btn-block btn-default"
+                    ng-click="currentRound.data.holes[holeNro].openingDesc = currentRound.data.holes[holeNro].openingDesc == 'hazard' ? null : 'hazard'"
+                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].openingDesc == 'hazard'}">Hazard
+            </button>
+        </div>
+        <div class="col-xs-4">
+            <button type="button" class="btn btn-sm btn-block btn-default"
+                    ng-click="currentRound.data.holes[holeNro].openingDesc = currentRound.data.holes[holeNro].openingDesc == 'out' ? null : 'out'"
+                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].openingDesc == 'out'}">Out
+            </button>
+        </div>
+        <div class="col-xs-2">
+
+        </div>
+    </div>-->
 </div>
 
-<h5 class="text-center">Strokes</h5>
-<div class="row text-center">
-    <div class="btn-group">
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 1"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 1}">1
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 2"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 2}">2
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 3"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 3}">3
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 4"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 4}">4
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 5"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 5}">5
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 6"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 6}">6
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 7"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 7}">7
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 8"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 8}">8
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = 9"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == 9}">9
-        </button>
-        <button type="button" class="btn btn-sm btn-default"
-                ng-click="currentRound.data.holes[holeNro].strokes = '-'"
-                ng-class="{'btn-info' : currentRound.data.holes[holeNro].strokes == '-'}">-
-        </button>
-    </div>
+<rowheader title="Approach" array="currentRound.data.holes[holeNro].approach" collapse-target="#approach"></rowheader>
+<div id="approach" class="collapse row text-center collapse-content"
+        ng-class="{'in' : openPart == 'approach'}">
+    <clubselector selection="currentRound.data.holes[holeNro].approach" clubs="approachClubs" callback="filled('approach')"/>
+</div>
+
+<rowheader title="Chips" array="currentRound.data.holes[holeNro].chip" collapse-target="#chip"></rowheader>
+<div id="chip" class="collapse row text-center collapse-content">
+    <clubselector selection="currentRound.data.holes[holeNro].chip" clubs="chipClubs" callback="filled('chip')"/>
+</div>
+
+<rowheader title="Puts" value="currentRound.data.holes[holeNro].puts" collapse-target="#puts"></rowheader>
+
+<div id="puts" class="collapse row text-center collapse-content"
+     ng-class="{'in' : openPart == 'puts'}">
+    <groupselector values="putValues" selections="currentRound.data.holes[holeNro].puts" multiselect="false"
+                   callback="filled('puts')"></groupselector>
+</div>
+
+<rowheader title="Total" value="currentRound.data.holes[holeNro].strokes" collapse-target="#strokes"></rowheader>
+
+<div id="strokes" class="collapse row text-center">
+    <groupselector values="totalValues" selections="currentRound.data.holes[holeNro].strokes" multiselect="false" callback="filled('puts')"></groupselector>
 </div>
 
 <div class="row">

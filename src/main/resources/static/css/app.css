@@ -19,3 +19,8 @@
 .animate-show-hide.ng-hide-remove.ng-hide-remove-active {
     opacity:1;
 }
+
+.collapse-content {
+    border: 1px solid rgb(217,237, 247);
+    border-top: none;
+}
