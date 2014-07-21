@@ -125,37 +125,57 @@ describe('ProfileService', function() {
 
         it("should give all clubs if no save has been made", function() {
             var profileClubs = service.getClubs();
-            expect(profileClubs).toEqual(service.listAllClubs());
+            var allClubs = service.listAllClubs();
+            var allListed = _.union(allClubs.woods, allClubs.irons, allClubs.wedges);
+            expect(profileClubs.opening).toEqual(allListed);
+            expect(profileClubs.approach).toEqual(allListed);
+            expect(profileClubs.chip).toEqual(allListed);
         });
 
         it("should give modified club list after modification", function() {
             var clubs = service.getClubs();
-            clubs.woods.splice(1,1);
-            clubs.irons.splice(0, 3);
-            clubs.wedges.splice(1, 1);
+            clubs.opening.splice(1,1);
+            clubs.approach.splice(0, 3);
+            clubs.chip.splice(1, 1);
             service.saveClubSelection(clubs);
 
             var profileClubs = service.getClubs();
 
-            expect(profileClubs.woods.length).toBe(6);
-            expect(profileClubs.irons.length).toBe(4);
-            expect(profileClubs.wedges.length).toBe(3);
+            expect(profileClubs.opening.length).toBe(17);
+            expect(profileClubs.approach.length).toBe(15);
+            expect(profileClubs.chip.length).toBe(17);
         });
 
-        it("should give irons and wedges as chip clubs", function() {
+        it("should give all clubs as chip clubs", function() {
            var chipClubs = service.getChipClubs();
-           expect(chipClubs.length).toBe(11);
+           expect(chipClubs.length).toBe(18);
         });
 
         it("should only give clubs from users selection when asking chip clubs", function() {
             var clubs = service.getClubs();
-            clubs.woods.splice(1,1);
-            clubs.irons.splice(0, 3);
-            clubs.wedges.splice(1, 1);
+            clubs.opening.splice(1,1);
+            clubs.approach.splice(0, 3);
+            clubs.chip.splice(1, 1);
             service.saveClubSelection(clubs);
 
             var chipClubs = service.getChipClubs();
-            expect(chipClubs.length).toBe(7);
+            expect(chipClubs.length).toBe(17);
+        });
+
+        it("should sort clubs when saving profile", function() {
+            var clubs = {
+                opening : ["SW", "W3", "I5"],
+                approach : ["LW", "I9", "I5"],
+                chip : ["SW", "PW", "I5"]
+            }
+            service.saveClubSelection(clubs);
+
+            var openingClubs = service.getOpeningClubs();
+            expect(openingClubs).toEqual(["W3", "I5", "SW"]);
+            var approachClubs = service.getApproachClubs();
+            expect(approachClubs).toEqual(["I5", "I9", "LW"]);
+            var chipClubs = service.getChipClubs();
+            expect(chipClubs).toEqual(["I5", "PW", "SW"]);
         });
     });
 

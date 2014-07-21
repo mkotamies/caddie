@@ -56,7 +56,9 @@ directives.directive('rowheader', function() {
             title: '@',
             array: '=',
             value:'=',
-            collapseTarget: '@'
+            collapseTarget: '@',
+            icon: '@',
+            showIcon: '='
         },
         templateUrl: 'templates/rowheader.html',
         link: function(scope, elm, attrs) {

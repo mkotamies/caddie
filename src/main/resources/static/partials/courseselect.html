@@ -182,10 +182,12 @@
                    callback="filled('puts')"></groupselector>
 </div>
 
-<rowheader title="Total" value="currentRound.data.holes[holeNro].strokes" collapse-target="#strokes"></rowheader>
+<rowheader title="Total" value="currentRound.data.holes[holeNro].strokes" collapse-target="#strokes"
+        icon="glyphicon-exclamation-sign" show-icon="currentRound.data.holes[holeNro].totalsOverridden"></rowheader>
 
 <div id="strokes" class="collapse row text-center">
-    <groupselector values="totalValues" selections="currentRound.data.holes[holeNro].strokes" multiselect="false" callback="filled('puts')"></groupselector>
+    <groupselector values="totalValues" selections="currentRound.data.holes[holeNro].strokes" multiselect="false" callback="totalsOverridden(true)"></groupselector>
+    <strong ng-show="currentRound.data.holes[holeNro].totalsOverridden" ng-click="totalsOverridden(false)">Remove override</strong>
 </div>
 
 <div class="row">

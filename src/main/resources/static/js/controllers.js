@@ -5,8 +5,12 @@ controllers.controller('NavigationController', ['$scope', 'RoundService', '$loca
     function ($scope, roundService, $location) {
 
         $scope.newRound = function () {
-            roundService.newRound();
-            $location.path("/new");
+
+            var r = confirm("Are you sure want to start a new round? Data of the current round will be lost.");
+            if (r == true) {
+                roundService.newRound();
+                $location.path("/new");
+            }
         }
     }]);
 
@@ -329,6 +333,10 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             }
         }
 
+        $scope.totalsOverridden = function(overridden) {
+            $scope.currentRound.data.holes[$scope.holeNro].totalsOverridden = overridden;
+        }
+
         $scope.init = function () {
 
             var currentRound = roundService.getCurrentRound();
@@ -377,7 +385,11 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
         $scope.init();
 
         $scope.$watch('currentRound.data', function (newValue, oldValue) {
-            $scope.calculateHoleTotal();
+
+            if(!$scope.currentRound.data.holes[$scope.holeNro].totalsOverridden) {
+                $scope.calculateHoleTotal();
+            }
+
             roundService.calculateStrokes();
             roundService.cacheCurrentRound();
         }, true);

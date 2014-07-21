@@ -66,7 +66,7 @@ services.factory('RoundService', ['$http', function ($http) {
             this.cacheCurrentRound();
             return currentRound;
         },
-        saveRoundData : function(callback   ) {
+        saveRoundData: function (callback) {
 
             var request = angular.copy(currentRound);
             request.deviceId = this.getDeviceId();
@@ -85,7 +85,7 @@ services.factory('RoundService', ['$http', function ($http) {
                     callback("Failed to save round data");
                 });
         },
-        listRounds : function(callback) {
+        listRounds: function (callback) {
 
             var deviceId = this.getDeviceId;
 
@@ -97,7 +97,7 @@ services.factory('RoundService', ['$http', function ($http) {
                     callback(null, "Failed to load rounds");
                 });
         },
-        getDeviceId : function() {
+        getDeviceId: function () {
             var id = window.localStorage.getItem("caddie.deviceId");
 
             if (!id) {
@@ -107,23 +107,23 @@ services.factory('RoundService', ['$http', function ($http) {
 
             return id;
         },
-        calculateStrokes : function() {
+        calculateStrokes: function () {
 
             var strokes = 0;
             var gamePar = 0;
 
-            if(!currentRound || !currentRound.data) {
+            if (!currentRound || !currentRound.data) {
                 return;
             }
 
-            angular.forEach(currentRound.data.holes, function(hole) {
+            angular.forEach(currentRound.data.holes, function (hole) {
 
-                if(hole.strokes && hole.strokes != "-") {
+                if (hole.strokes && hole.strokes != "-") {
                     strokes += hole.strokes;
                     gamePar += hole.gamePar;
                 }
-                else if(hole.strokes == "-"){
-                    strokes += (hole.gamePar+2);
+                else if (hole.strokes == "-") {
+                    strokes += (hole.gamePar + 2);
                     gamePar += hole.gamePar;
                 }
 
@@ -147,7 +147,7 @@ services.factory('CalcService', [function () {
                 return null;
             }
         },
-        analyseRound : function (roundData) {
+        analyseRound: function (roundData) {
 
             var analysis = {holesPlayed: 0};
             analysis.openings = {left: 0, fair: 0, right: 0, hazard: 0, out: 0, total: 0};
@@ -159,8 +159,8 @@ services.factory('CalcService', [function () {
                 if (hole.strokes) {
                     var strokes = hole.strokes;
 
-                    if(hole.strokes == "-") {
-                        strokes = hole.gamePar+2;
+                    if (hole.strokes == "-") {
+                        strokes = hole.gamePar + 2;
                     }
 
                     analysis.holesPlayed++;
@@ -195,47 +195,57 @@ services.factory('CalcService', [function () {
 
 services.factory('ProfileService', [function () {
 
+    var allClubs = ["W1", "W2", "W3", "W4", "W5", "W6", "W7", "I3", "I4", "I5", "I6", "I7", "I8", "I9", "PW", "GW", "SW", "LW"];
+
     var clubs = {
-        woods : ["W1", "W2", "W3", "W4", "W5", "W6", "W7"],
-        irons : ["I3", "I4", "I5", "I6", "I7", "I8", "I9"],
-        wedges : ["PW", "GW", "SW", "LW"]
+        woods: ["W1", "W2", "W3", "W4", "W5", "W6", "W7"],
+        irons: ["I3", "I4", "I5", "I6", "I7", "I8", "I9"],
+        wedges: ["PW", "GW", "SW", "LW"]
     };
 
     return {
-        listAllClubs : function() {
+        listAllClubs: function () {
             return clubs;
         },
-        getClubs : function() {
+        getClubs: function () {
             var profileClubs = window.localStorage.getItem("caddie.profile.clubs");
 
-            if(profileClubs) {
+            if (profileClubs) {
                 return JSON.parse(profileClubs);
             }
             else {
-                var all = this.listAllClubs();
-                var clubs = _.union(all.woods, all.irons, all.wedges);
                 return {
-                    opening: angular.copy(clubs),
-                    approach: angular.copy(clubs),
-                    chip: angular.copy(clubs)
+                    opening: angular.copy(allClubs),
+                    approach: angular.copy(allClubs),
+                    chip: angular.copy(allClubs)
                 }
             }
         },
-        saveClubSelection : function(clubs) {
+        saveClubSelection: function (clubs) {
+            clubs.opening = _.sortBy(clubs.opening, clubSort);
+            clubs.approach = _.sortBy(clubs.approach, clubSort);
+            clubs.chip = _.sortBy(clubs.chip, clubSort);
+
             window.localStorage.setItem("caddie.profile.clubs", JSON.stringify(clubs));
         },
-        resetClubSelection : function() {
+        resetClubSelection: function () {
             window.localStorage.removeItem("caddie.profile.clubs");
         },
-        getChipClubs : function() {
+        getChipClubs: function () {
             return this.getClubs().chip;
         },
-        getOpeningClubs : function() {
+        getOpeningClubs: function () {
             return this.getClubs().opening;
         },
-        getApproachClubs : function() {
+        getApproachClubs: function () {
             return this.getClubs().approach;
         }
+
+
+    }
+
+    function clubSort(club) {
+        return allClubs.indexOf(club);
     }
 }]);
 
@@ -244,10 +254,10 @@ services.factory('ErrorService', [function () {
     var errors = [];
 
     return {
-        logError : function(message, url, lineNumber) {
-            errors.push({message:message,url:url,lineNumber:lineNumber,timestamp:new Date()});
+        logError: function (message, url, lineNumber) {
+            errors.push({message: message, url: url, lineNumber: lineNumber, timestamp: new Date()});
             return false;
         },
-        errors : errors
+        errors: errors
     }
 }]);
