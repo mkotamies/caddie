@@ -201,6 +201,212 @@
         ]
     },
     {
+        "name" : "Pickala Golf Forest",
+        "courses" : [
+            {
+                "tee": "yellow",
+                "slope": 136,
+                "cr": 70.7,
+                "par" : 72,
+                "holes": {
+                    "1": {
+                        "par": 4,
+                        "length": 370,
+                        "hcp": 6
+                    },
+                    "2": {
+                        "par": 4,
+                        "length": 352,
+                        "hcp": 4
+                    },
+                    "3": {
+                        "par": 4,
+                        "length": 329,
+                        "hcp": 11
+                    },
+                    "4": {
+                        "par": 3,
+                        "length": 153,
+                        "hcp": 14
+                    },
+                    "5": {
+                        "par": 5,
+                        "length": 495,
+                        "hcp": 1
+                    },
+                    "6": {
+                        "par": 4,
+                        "length": 287,
+                        "hcp": 16
+                    },
+                    "7": {
+                        "par": 5,
+                        "length": 485,
+                        "hcp": 7
+                    },
+                    "8": {
+                        "par": 4,
+                        "length": 291,
+                        "hcp": 15
+                    },
+                    "9": {
+                        "par": 3,
+                        "length": 145,
+                        "hcp": 17
+                    },
+                    "10": {
+                        "par": 5,
+                        "length": 477,
+                        "hcp": 3
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 134,
+                        "hcp": 18
+                    },
+                    "12": {
+                        "par": 4,
+                        "length": 365,
+                        "hcp": 5
+                    },
+                    "13": {
+                        "par": 4,
+                        "length": 335,
+                        "hcp": 12
+                    },
+                    "14": {
+                        "par": 5,
+                        "length": 470,
+                        "hcp": 10
+                    },
+                    "15": {
+                        "par": 4,
+                        "length": 353,
+                        "hcp": 2
+                    },
+                    "16": {
+                        "par": 3,
+                        "length": 144,
+                        "hcp": 13
+                    },
+                    "17": {
+                        "par": 4,
+                        "length": 352,
+                        "hcp": 9
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 314,
+                        "hcp": 8
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "name" : "Pickala Golf Park",
+        "courses" : [
+            {
+                "tee": "yellow",
+                "slope": 123,
+                "cr": 71.9,
+                "par" : 72,
+                "holes": {
+                    "1": {
+                        "par": 5,
+                        "length": 458,
+                        "hcp": 14
+                    },
+                    "2": {
+                        "par": 4,
+                        "length": 366,
+                        "hcp": 1
+                    },
+                    "3": {
+                        "par": 3,
+                        "length": 150,
+                        "hcp": 16
+                    },
+                    "4": {
+                        "par": 4,
+                        "length": 312,
+                        "hcp": 17
+                    },
+                    "5": {
+                        "par": 4,
+                        "length": 384,
+                        "hcp": 3
+                    },
+                    "6": {
+                        "par": 3,
+                        "length": 161,
+                        "hcp": 12
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 341,
+                        "hcp": 15
+                    },
+                    "8": {
+                        "par": 5,
+                        "length": 470,
+                        "hcp": 10
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 361,
+                        "hcp": 6
+                    },
+                    "10": {
+                        "par": 4,
+                        "length": 347,
+                        "hcp": 5
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 110,
+                        "hcp": 18
+                    },
+                    "12": {
+                        "par": 5,
+                        "length": 494,
+                        "hcp": 9
+                    },
+                    "13": {
+                        "par": 4,
+                        "length": 340,
+                        "hcp": 4
+                    },
+                    "14": {
+                        "par": 4,
+                        "length": 354,
+                        "hcp": 11
+                    },
+                    "15": {
+                        "par": 3,
+                        "length": 167,
+                        "hcp": 13
+                    },
+                    "16": {
+                        "par": 5,
+                        "length": 483,
+                        "hcp": 8
+                    },
+                    "17": {
+                        "par": 4,
+                        "length": 326,
+                        "hcp": 2
+                    },
+                    "18": {
+                        "par": 4,
+                        "length": 337,
+                        "hcp": 7
+                    }
+                }
+            }
+        ]
+    },
+    {
         "name": "Hill Side Valley",
         "courses": [
             {
