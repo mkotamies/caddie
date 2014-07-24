@@ -304,6 +304,7 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
 
         $scope.filled = function(filledPart) {
 
+             /*
             if(filledPart == 'opening') {
                 $('#' + filledPart).collapse('hide');
 
@@ -330,11 +331,28 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             }
             else if(filledPart == 'puts') {
                 $('#puts').collapse('hide');
-            }
+            }*/
         }
 
         $scope.totalsOverridden = function(overridden) {
             $scope.currentRound.data.holes[$scope.holeNro].totalsOverridden = overridden;
+        }
+
+        $scope.mapStrokes = function(value) {
+
+            if($scope.currentRound.data.holes[$scope.holeNro]) {
+                var clubs = _.map($scope.currentRound.data.holes[$scope.holeNro][value], function(stroke) {return stroke.club});
+
+                if(clubs.length > 0) {
+                    return clubs.join(", ");
+                }
+                else {
+                    return "";
+                }
+            }
+            else {
+                return "";
+            }
         }
 
         $scope.init = function () {

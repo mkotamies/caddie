@@ -71,123 +71,148 @@
 
 
 <div class="animate-show-hide" ng-show="currentRound">
-<div class="row">
-    <div class="col-xs-4 text-center">
-        <span class="text-muted text-center">Strokes</span>
+    <div class="row">
+        <div class="col-xs-4 text-center">
+            <span class="text-muted text-center">Strokes</span>
+        </div>
+        <div class="col-xs-4">
+            <h4 class="text-center" style="margin-top: -10px;">{{currentRound.data.courseName}}</h4>
+        </div>
+        <div class="col-xs-4 text-center">
+            <span class="text-muted text-center">Points</span>
+        </div>
     </div>
-    <div class="col-xs-4">
-        <h4 class="text-center" style="margin-top: -10px;">{{currentRound.data.courseName}}</h4>
-    </div>
-    <div class="col-xs-4 text-center">
-        <span class="text-muted text-center">Points</span>
-    </div>
-</div>
-<div class="row" style="border-bottom: 1px solid lightgrey; padding-bottom: 5px;">
-    <div class="col-xs-2 text-center">
-        <span class="lead">{{currentRound.strokes}}</span>
-    </div>
-    <div class="col-xs-2">
+    <div class="row" style="border-bottom: 1px solid lightgrey; padding-bottom: 5px;">
+        <div class="col-xs-2 text-center">
+            <span class="lead">{{currentRound.strokes}}</span>
+        </div>
+        <div class="col-xs-3">
         <span class="h3 text-center"><strong>
             {{currentRound.toPar > 0 ? "+" : ""}}{{currentRound.toPar}}</strong></span>
-    </div>
-    <div class="col-xs-2 text-center" style="height: 30px;border-right: 1px solid lightgrey;"></div>
-    <div class="col-xs-2 text-center h3"></div>
-    <div class="col-xs-2 text-center">
+        </div>
+        <div class="col-xs-1 text-center" style="height: 30px;border-right: 1px solid lightgrey;"></div>
+        <div class="col-xs-1 text-center h3"></div>
+        <div class="col-xs-3 text-center">
         <span class="h3 text-center"><strong>
             {{pointSpec() > 0 ? "+" : ""}}{{pointSpec()}}</strong></span>
+        </div>
+        <div class="col-xs-2 text-center">
+            <span class="lead">{{roundPoints()}}</span>
+        </div>
     </div>
-    <div class="col-xs-2 text-center">
-        <span class="lead">{{roundPoints()}}</span>
-    </div>
-</div>
 
-<div class="row" style="font-weight: bold;">
-    <div class="col-xs-3 text-center">Hole {{holeNro}}</div>
-    <div class="col-xs-3 text-center">Par
-        {{currentRound.data.holes[holeNro].gamePar}}
-        <span class="text-muted" style="font-size: 12px;">({{currentRound.data.holes[holeNro].par}})</span>
-    </div>
-    <div class="col-xs-3 text-center">
-        {{currentRound.data.holes[holeNro].length}}m
-    </div>
-    <div class="col-xs-3 text-center">Hcp
-        {{currentRound.data.holes[holeNro].hcp}}
-    </div>
-</div>
-<rowheader title="Opening" array="currentRound.data.holes[holeNro].opening" collapse-target="#opening"></rowheader>
-
-<div id="opening" class="row collapse collapse-content"
-     ng-class="{'in' : openPart == 'opening'}">
-    <clubselector selection="currentRound.data.holes[holeNro].opening" clubs="openingClubs" callback="filled('opening')"/>
-
-    <!--
-    <div class="row">
-        <div class="col-xs-4">
-            <button type="button" class="btn btn-sm btn-block btn-default"
-                    ng-click="currentRound.data.holes[holeNro].opening = 'left'"
-                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'left'}">Left
-            </button>
+    <div class="row" style="font-weight: bold;">
+        <div class="col-xs-3 text-center"><span class="text-muted small">Hole</span><br/>{{holeNro}}</div>
+        <div class="col-xs-3 text-center"><span class="text-muted small">Par</span><br/>
+            {{currentRound.data.holes[holeNro].gamePar}}
+            <span class="text-muted" style="font-size: 12px;">({{currentRound.data.holes[holeNro].par}})</span>
         </div>
-        <div class="col-xs-4">
-            <button type="button" class="btn btn-sm btn-block btn-default"
-                    ng-click="currentRound.data.holes[holeNro].opening = 'fair'"
-                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'fair'}">Fair
-            </button>
+        <div class="col-xs-3 text-center"><span class="text-muted small">Length</span><br/>
+            {{currentRound.data.holes[holeNro].length}}m
         </div>
-        <div class="col-xs-4">
-            <button type="button" class="btn btn-sm btn-block btn-default"
-                    ng-click="currentRound.data.holes[holeNro].opening = 'right'"
-                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].opening == 'right'}">Right
-            </button>
+        <div class="col-xs-3 text-center"><span class="text-muted small">Hcp</span><br/>
+            {{currentRound.data.holes[holeNro].hcp}}
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-2">
 
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-info">
+            <div class="panel-heading row" style="margin-right: 0; margin-left: 0; margin-bottom: 0;" data-toggle="collapse"
+                 data-target="#opening" data-parent="#accordion">
+                <div class="col-xs-6">Opening</div>
+                <div class="col-xs-4">{{mapStrokes('opening')}}</div>
+            </div>
+            <div id="opening" class="panel-body collapse collapse-content">
+                <clubselector selection="currentRound.data.holes[holeNro].opening" clubs="openingClubs"
+                              callback="filled('opening')"
+                              additional="{feel: ['Fail', 'Bad', 'Ok', 'Good', 'Excellent']}"/>
+            </div>
         </div>
-        <div class="col-xs-4">
-            <button type="button" class="btn btn-sm btn-block btn-default"
-                    ng-click="currentRound.data.holes[holeNro].openingDesc = currentRound.data.holes[holeNro].openingDesc == 'hazard' ? null : 'hazard'"
-                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].openingDesc == 'hazard'}">Hazard
-            </button>
+        <div class="panel panel-info">
+            <div class="panel-heading row" style="margin-right: 0; margin-left: 0; margin-bottom: 0;" data-toggle="collapse"
+                 data-target="#approach" data-parent="#accordion">
+                <div class="col-xs-6">Approach</div>
+                <div class="col-xs-4">{{mapStrokes('approach')}}</div>
+            </div>
+            <div id="approach" class="panel-body collapse collapse-content">
+                <clubselector selection="currentRound.data.holes[holeNro].approach" clubs="approachClubs"
+                              callback="filled('approach')"
+                              additional="{feel: ['Fail', 'Bad', 'Ok', 'Good', 'Excellent']}"/>
+            </div>
         </div>
-        <div class="col-xs-4">
-            <button type="button" class="btn btn-sm btn-block btn-default"
-                    ng-click="currentRound.data.holes[holeNro].openingDesc = currentRound.data.holes[holeNro].openingDesc == 'out' ? null : 'out'"
-                    ng-class="{'btn-info' : currentRound.data.holes[holeNro].openingDesc == 'out'}">Out
-            </button>
+        <div class="panel panel-info">
+            <div class="panel-heading row" style="margin-right: 0; margin-left: 0; margin-bottom: 0;" data-toggle="collapse"
+                 data-target="#chip" data-parent="#accordion">
+                <div class="col-xs-6">Chip</div>
+                <div class="col-xs-4">{{mapStrokes('chip')}}</div>
+            </div>
+            <div id="chip" class="panel-body collapse collapse-content">
+                <clubselector selection="currentRound.data.holes[holeNro].chip" clubs="chipClubs"
+                              callback="filled('chip')"
+                              additional="{feel: ['Fail', 'Bad', 'Ok', 'Good', 'Excellent']}"/>
+            </div>
         </div>
-        <div class="col-xs-2">
+        <div class="panel panel-info">
+            <div class="panel-heading row" style="margin-right: 0; margin-left: 0; margin-bottom: 0;" data-toggle="collapse"
+                 data-target="#puts" data-parent="#accordion">
+                <div class="col-xs-6">Puts</div>
+                <div class="col-xs-4">{{currentRound.data.holes[holeNro].puts}}</div>
+            </div>
+            <div id="puts" class="panel-body collapse collapse-content">
+                <groupselector values="putValues" selections="currentRound.data.holes[holeNro].puts" multiselect="false"
+                               callback="filled('puts')"></groupselector>
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading row" style="margin-right: 0; margin-left: 0; margin-bottom: 0;" data-toggle="collapse"
+                 data-target="#strokes" data-parent="#accordion">
+                <div class="col-xs-6">Total</div>
+                <div class="col-xs-4">{{currentRound.data.holes[holeNro].strokes}}</div>
+                <span class="col-xs-2 glyphicon glyphicon-exclamation-sign"
+                        ng-show="currentRound.data.holes[holeNro].totalsOverridden"></span>
+            </div>
+            <div id="strokes" class="panel-body collapse collapse-content text-center">
+                <groupselector values="totalValues" selections="currentRound.data.holes[holeNro].strokes"
+                               multiselect="false" callback="totalsOverridden(true)"></groupselector>
+                <strong ng-show="currentRound.data.holes[holeNro].totalsOverridden" ng-click="totalsOverridden(false)">Remove
+                    override</strong>
+            </div>
+        </div>
 
-        </div>
+        <!--
+        <rowheader title="Approach" array="currentRound.data.holes[holeNro].approach"
+               collapse-target="#approach"></rowheader>
+    <div id="approach" class="collapse text-center collapse-content"
+         ng-class="{'in' : openPart == 'approach'}">
+        <clubselector selection="currentRound.data.holes[holeNro].approach" clubs="approachClubs"
+                      callback="filled('approach')"
+                      additional="{feel: ['Fail', 'Bad', 'Ok', 'Good', 'Excellent']}"/>
+    </div>
+
+    <rowheader title="Chips" array="currentRound.data.holes[holeNro].chip" collapse-target="#chip"></rowheader>
+    <div id="chip" class="collapse row text-center collapse-content">
+        <clubselector selection="currentRound.data.holes[holeNro].chip" clubs="chipClubs"
+                      callback="filled('chip')"
+                      additional="{feel: ['Fail', 'Bad', 'Ok', 'Good', 'Excellent']}"/>
+    </div>
+
+    <rowheader title="Puts" value="currentRound.data.holes[holeNro].puts" collapse-target="#puts"></rowheader>
+
+    <div id="puts" class="collapse text-center collapse-content">
+        <groupselector values="putValues" selections="currentRound.data.holes[holeNro].puts" multiselect="false"
+                       callback="filled('puts')"></groupselector>
+    </div>
+
+    <rowheader title="Total" value="currentRound.data.holes[holeNro].strokes" collapse-target="#strokes"
+               icon="glyphicon-exclamation-sign"
+               show-icon="currentRound.data.holes[holeNro].totalsOverridden"></rowheader>
+
+    <div id="strokes" class="collapse row text-center">
+        <groupselector values="totalValues" selections="currentRound.data.holes[holeNro].strokes"
+                       multiselect="false" callback="totalsOverridden(true)"></groupselector>
+        <strong ng-show="currentRound.data.holes[holeNro].totalsOverridden" ng-click="totalsOverridden(false)">Remove
+            override</strong>
     </div>-->
-</div>
-
-<rowheader title="Approach" array="currentRound.data.holes[holeNro].approach" collapse-target="#approach"></rowheader>
-<div id="approach" class="collapse row text-center collapse-content"
-        ng-class="{'in' : openPart == 'approach'}">
-    <clubselector selection="currentRound.data.holes[holeNro].approach" clubs="approachClubs" callback="filled('approach')"/>
-</div>
-
-<rowheader title="Chips" array="currentRound.data.holes[holeNro].chip" collapse-target="#chip"></rowheader>
-<div id="chip" class="collapse row text-center collapse-content">
-    <clubselector selection="currentRound.data.holes[holeNro].chip" clubs="chipClubs" callback="filled('chip')"/>
-</div>
-
-<rowheader title="Puts" value="currentRound.data.holes[holeNro].puts" collapse-target="#puts"></rowheader>
-
-<div id="puts" class="collapse row text-center collapse-content"
-     ng-class="{'in' : openPart == 'puts'}">
-    <groupselector values="putValues" selections="currentRound.data.holes[holeNro].puts" multiselect="false"
-                   callback="filled('puts')"></groupselector>
-</div>
-
-<rowheader title="Total" value="currentRound.data.holes[holeNro].strokes" collapse-target="#strokes"
-        icon="glyphicon-exclamation-sign" show-icon="currentRound.data.holes[holeNro].totalsOverridden"></rowheader>
-
-<div id="strokes" class="collapse row text-center">
-    <groupselector values="totalValues" selections="currentRound.data.holes[holeNro].strokes" multiselect="false" callback="totalsOverridden(true)"></groupselector>
-    <strong ng-show="currentRound.data.holes[holeNro].totalsOverridden" ng-click="totalsOverridden(false)">Remove override</strong>
 </div>
 
 <div class="row">

@@ -4,7 +4,7 @@ services.factory('CourseService', ['$http', 'ErrorService', function ($http, $re
 
     return {
         listClubs: function (callback) {
-            callback(["Hill Side Valley", "Paloheina Golf", "Vihti Golf"]);
+            callback(["Hill Side Valley", "Paloheina Golf", "Pickala Golf Forest", "Pickala Golf Park", "Vihti Golf"]);
         },
         getClubData: function (club, callback) {
 
