@@ -1,0 +1,16 @@
+<div class="container" style="margin-top: 15px;">
+
+    <div class="pure-menu pure-menu-open pure-menu-horizontal"
+         style="border-bottom: 1px solid lightgrey; margin-bottom: 10px; margin-left: 30px;">
+        <ul>
+            <li><a href="#/analysis/holes">Holes</a></li>
+            <li class="pure-menu-selected"><a href="#/analysis/flow">Flow</a></li>
+        </ul>
+    </div>
+
+    <div id="my-container" style="height: 400px; width: 100%; margin-bottom: 25px;">
+        <cjs-line dataset="holeData" autofit="true" options="dataOptions"></cjs-line>
+    </div>
+
+    <a href="#/" class="btn btn-default btn-block">Back to Round</a>
+</div>

@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f37ec73a-b645-4b8f-930b-b3cca2552020" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/templates/buttongroup.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/css/app.css" afterPath="$PROJECT_DIR$/src/main/resources/static/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/templates/clubselect.html" afterPath="$PROJECT_DIR$/src/main/resources/static/templates/clubselect.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/lib/Chart.min.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/js/analysiscontrollers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/caddie.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/static/partials/flowanalysis.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/resources/static/partials/analysis.html" afterPath="$PROJECT_DIR$/src/main/resources/static/partials/holeanalysis.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/app.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/controllers.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/partials/courseselect.html" afterPath="$PROJECT_DIR$/src/main/resources/static/partials/courseselect.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/directives.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/directives.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/templates/groupselector.html" afterPath="$PROJECT_DIR$/src/main/resources/static/templates/groupselector.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/templates/rowheader.html" afterPath="$PROJECT_DIR$/src/main/resources/static/templates/rowheader.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/static/js/services.js" afterPath="$PROJECT_DIR$/src/main/resources/static/js/services.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="caddie.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,34 +35,67 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="app.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/app.css">
+      <file leaf-file-name="holeanalysis.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/holeanalysis.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-              <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="buttongroup.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/templates/buttongroup.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="195">
-              <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+            <state vertical-scroll-proportion="-11.125" vertical-offset="1173" max-vertical-offset="1545">
+              <caret line="96" column="4" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="68" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1406198857000" expanded="true" signature="75:360" placeholder="..." />
+                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="directives.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/directives.js">
+      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="857" max-vertical-offset="2310">
-              <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="991" max-vertical-offset="2805">
+              <caret line="78" column="45" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="flowanalysis.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/flowanalysis.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="315">
+              <caret line="3" column="88" selection-start-line="3" selection-start-column="88" selection-end-line="3" selection-end-column="88" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/app.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6480" max-vertical-offset="7395">
+              <caret line="440" column="8" selection-start-line="440" selection-start-column="8" selection-end-line="440" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="analysiscontrollers.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/analysiscontrollers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="138" max-vertical-offset="885">
+              <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -69,8 +104,8 @@
       <file leaf-file-name="courseselect.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/courseselect.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6135266" vertical-offset="2184" max-vertical-offset="4005">
-              <caret line="171" column="82" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
+            <state vertical-scroll-proportion="0.12096774" vertical-offset="1050" max-vertical-offset="3450">
+              <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -82,7 +117,7 @@
                 <element signature="n#style#0;n#h2#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h4#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#1;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -95,11 +130,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/controllers.js">
+      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/services.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4935" max-vertical-offset="7485">
-              <caret line="348" column="22" selection-start-line="348" selection-start-column="22" selection-end-line="348" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2238" max-vertical-offset="4035">
+              <caret line="152" column="45" selection-start-line="152" selection-start-column="45" selection-end-line="152" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-8.875" vertical-offset="1092" max-vertical-offset="1515">
+              <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -130,14 +175,20 @@
         <option value="$PROJECT_DIR$/app/js/services.js" />
         <option value="$PROJECT_DIR$/api/index.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/clubs.json" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/js/services.js" />
-        <option value="$PROJECT_DIR$/src/main/resources/static/css/app.css" />
         <option value="$PROJECT_DIR$/src/main/resources/static/templates/buttongroup.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/directives.js" />
         <option value="$PROJECT_DIR$/src/main/resources/static/templates/rowheader.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/templates/groupselector.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/templates/clubselect.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/partials/analysis.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/js/controllers.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/partials/holeanalysis.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/services.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/analysiscontrollers.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/css/app.css" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/js/app.js" />
+        <option value="$PROJECT_DIR$/src/main/resources/static/partials/flowanalysis.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/partials/courseselect.html" />
       </list>
     </option>
@@ -327,6 +378,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caddie" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caddie" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -378,6 +459,36 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bower_components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caddie" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caddie" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -387,7 +498,11 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/lib" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static/bower_components" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -449,8 +564,9 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32944608" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32944608" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32944608" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24938068" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24938068" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -461,7 +577,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -502,48 +617,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/services.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55813956" vertical-offset="0" max-vertical-offset="4020">
-          <caret line="24" column="10" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/clubs.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.08990537" vertical-offset="4902" max-vertical-offset="12240">
           <caret line="323" column="22" selection-start-line="323" selection-start-column="22" selection-end-line="323" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/analysis.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/templates/buttongroup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="195">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1406198857000" expanded="true" signature="75:360" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -575,26 +653,130 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/templates/buttongroup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.16561514" vertical-offset="0" max-vertical-offset="634">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/directives.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="857" max-vertical-offset="2310">
+        <state vertical-scroll-proportion="0.33890578" vertical-offset="857" max-vertical-offset="2310">
           <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/services.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2238" max-vertical-offset="4035">
+          <caret line="152" column="45" selection-start-line="152" selection-start-column="45" selection-end-line="152" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4935" max-vertical-offset="7485">
-          <caret line="348" column="22" selection-start-line="348" selection-start-column="22" selection-end-line="348" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="6525" max-vertical-offset="7395">
+          <caret line="440" column="8" selection-start-line="440" selection-start-column="8" selection-end-line="440" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/bower_components/chartjs/readme.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="870">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/bower_components/chartjs/.bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/lib/Chart.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="396">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.875" vertical-offset="1092" max-vertical-offset="1515">
+          <caret line="87" column="16" selection-start-line="87" selection-start-column="16" selection-end-line="87" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/analysiscontrollers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="138" max-vertical-offset="885">
+          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/holeanalysis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.125" vertical-offset="1173" max-vertical-offset="1545">
+          <caret line="96" column="4" selection-start-line="96" selection-start-column="4" selection-end-line="96" selection-end-column="68" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/css/app.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="991" max-vertical-offset="2805">
+          <caret line="78" column="45" selection-start-line="78" selection-start-column="45" selection-end-line="78" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/flowanalysis.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="315">
+          <caret line="3" column="88" selection-start-line="3" selection-start-column="88" selection-end-line="3" selection-end-column="88" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/partials/courseselect.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6135266" vertical-offset="2184" max-vertical-offset="4005">
-          <caret line="171" column="82" selection-start-line="171" selection-start-column="82" selection-end-line="171" selection-end-column="82" />
+        <state vertical-scroll-proportion="0.12096774" vertical-offset="1050" max-vertical-offset="3450">
+          <caret line="73" column="44" selection-start-line="73" selection-start-column="44" selection-end-line="73" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -606,7 +788,7 @@
             <element signature="n#style#0;n#h2#0;n#div#3;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h4#0;n#div#1;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#1;n#div#1;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#3;n#div#1;n#div#0;n#!!top" expanded="true" />

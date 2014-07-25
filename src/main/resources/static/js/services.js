@@ -150,6 +150,7 @@ services.factory('CalcService', [function () {
         analyseRound: function (roundData) {
 
             var analysis = {holesPlayed: 0};
+            analysis.holes = roundData.holes;
             analysis.openings = {left: 0, fair: 0, right: 0, hazard: 0, out: 0, total: 0};
             analysis.toGreen = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};
             analysis.puts = {3: {total: 0, sum: 0}, 4: {total: 0, sum: 0}, 5: {total: 0, sum: 0}};

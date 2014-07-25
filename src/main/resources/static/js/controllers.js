@@ -440,12 +440,6 @@ controllers.controller('ScorecardController', ['$scope', 'CourseService', 'Round
         }
     }]);
 
-controllers.controller('AnalysisController', ['$scope', 'RoundService', 'CalcService',
-    function ($scope, roundService, calcService) {
-
-        $scope.analysis = calcService.analyseRound(roundService.getCurrentRound().data);
-    }]);
-
 controllers.controller('RoundListController', ['$scope', 'CourseService', 'RoundService', '$location',
     function ($scope, courseService, roundService, $location) {
 
