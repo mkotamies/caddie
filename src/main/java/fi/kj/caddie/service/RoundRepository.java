@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import fi.kj.caddie.rest.RoundData;
+import fi.kj.caddie.domain.Round;
 
-public interface RoundRepository extends MongoRepository<RoundData, String> {
+public interface RoundRepository extends MongoRepository<Round, String> {
 
-	List<RoundData> findByDeviceId(String deviceId);
+	List<Round> findByDeviceId(String deviceId);
+
+	Round findById(String id);
 
 }

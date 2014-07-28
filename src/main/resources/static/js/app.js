@@ -11,15 +11,22 @@ var app = angular.module('web', [
     'chartjs'
 ]).
     config(['$routeProvider', function ($routeProvider) {
-        $routeProvider.when('/', {templateUrl: 'partials/courseselect.html', controller: 'CourseSelectController'});
-        $routeProvider.when('/list', {templateUrl: 'partials/roundlist.html', controller: 'RoundListController'});
+        $routeProvider.when('/new', {templateUrl: 'partials/newround.html', controller: 'NewRoundController'});
+
+        $routeProvider.when('/current', {templateUrl: 'partials/collector.html', controller: 'CollectorController', reloadOnSearch: false});
         $routeProvider.when('/scorecard', {templateUrl: 'partials/scorecard.html', controller: 'ScorecardController'});
+        $routeProvider.when('/completed/:id', {templateUrl: 'partials/completedround.html'});
+
+        $routeProvider.when('/list', {templateUrl: 'partials/roundlist.html', controller: 'RoundListController'});
+
+        $routeProvider.when('/overview/:id', {templateUrl: 'partials/overview.html', controller: 'OverviewController'});
+
         $routeProvider.when('/analysis/holes', {templateUrl: 'partials/holeanalysis.html', controller: 'HoleAnalysisController'});
         $routeProvider.when('/analysis/flow', {templateUrl: 'partials/flowanalysis.html', controller: 'FlowController'});
         $routeProvider.when('/errors', {templateUrl: 'partials/errorlist.html', controller: 'ErrorListController'});
         $routeProvider.when('/settings', {templateUrl: 'partials/settings.html', controller: 'SettingsController'});
         $routeProvider.when('/about', {templateUrl: 'partials/about.html', controller: 'AboutController'});
-        $routeProvider.otherwise({redirectTo: '/'});
+        $routeProvider.otherwise({redirectTo: '/current'});
     }]).run(['RoundService', 'ErrorService', function(roundService, errorService) {
 
         window.onerror = errorService.logError;

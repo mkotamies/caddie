@@ -1,5 +1,17 @@
 var controllers = angular.module('controllers');
 
+controllers.controller('OverviewController', ['$scope', 'RoundService','$routeParams',
+    function ($scope, roundService, $routeParams) {
+
+        roundService.getRoundData($routeParams.id, function(data, error) {
+             if(error) {
+                 toastr.warning(error);
+             }
+            else {
+                 $scope.round = data;
+             }
+        });
+    }]);
 
 controllers.controller('FlowController', ['$scope', 'RoundService', 'CalcService',
     function ($scope, roundService, calcService) {

@@ -1,4 +1,4 @@
-package fi.kj.caddie.rest;
+package fi.kj.caddie.domain;
 
 import org.joda.time.DateTime;
 
@@ -7,8 +7,8 @@ public class RoundHeader {
 	String id;
 	DateTime timestamp;
 	String caption;
-	Long strokes;
-	Long toPar;
+	Integer strokes;
+	Integer toPar;
 	
 	public String getId() {
 		return id;
@@ -22,11 +22,11 @@ public class RoundHeader {
 		return caption;
 	}
 	
-	public Long getStrokes() {
+	public Integer getStrokes() {
 		return strokes;
 	}
 	
-	public Long getToPar() {
+	public Integer getToPar() {
 		return toPar;
 	}
 }

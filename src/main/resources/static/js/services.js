@@ -29,14 +29,13 @@ services.factory('CourseService', ['$http', 'ErrorService', function ($http, $re
     }
 }]);
 
-services.factory('RoundService', ['$http', function ($http) {
+services.factory('RoundService', ['$http', 'CourseService', 'CalcService', function ($http, courseService, calcService) {
 
     var currentRound = null;
 
-
     return {
         loadCurrentRound: function () {
-            var loaded = window.localStorage.getItem("caddieRound");
+            var loaded = window.localStorage.getItem("caddie.round.current");
 
             if (loaded && loaded != 'undefined') {
                 currentRound = JSON.parse(loaded);
@@ -46,43 +45,59 @@ services.factory('RoundService', ['$http', function ($http) {
         },
         cacheCurrentRound: function () {
             if (currentRound != null) {
-                window.localStorage.setItem("caddieRound", JSON.stringify(currentRound));
+                window.localStorage.setItem("caddie.round.current", JSON.stringify(currentRound));
             }
+        },
+        clearCurrentRound : function() {
+            window.localStorage.removeItem("caddie.round.current");
+            currentRound = null;
         },
         getCurrentRound: function () {
             return currentRound;
         },
-        newRound: function () {
-            window.localStorage.removeItem("caddieRound");
-            currentRound = null;
-        },
-        startRound: function (selectedCourse) {
+        startRound: function (selectedCourse, hcp, gameHcp) {
             currentRound = {};
-            currentRound.caption = selectedCourse.courseName;
+            currentRound.courseName = selectedCourse.courseName;
+            currentRound.hcp = hcp;
+            currentRound.gameHcp = gameHcp;
             currentRound.timestamp = new Date();
-            currentRound.data = {};
 
+            currentRound.data = {};
             currentRound.data = angular.copy(selectedCourse);
+            delete currentRound.data.courseName;
+
+            var pointsPerHole = Math.floor(currentRound.gameHcp / 18);
+            var extraPointHoles = Math.floor(currentRound.gameHcp % 18);
+
+            for (var key in currentRound.data.holes) {
+                var hole = currentRound.data.holes[key];
+                hole.gamePar = hole.par + pointsPerHole;
+
+                if (hole.hcp <= extraPointHoles) {
+                    hole.gamePar += 1;
+                }
+            }
+
+            courseService.saveHcp(hcp);
+
             this.cacheCurrentRound();
-            return currentRound;
         },
         saveRoundData: function (callback) {
 
             var request = angular.copy(currentRound);
             request.deviceId = this.getDeviceId();
-            request.data = JSON.stringify(currentRound.data);
+            request.newHcp = calcService.calculateNewHcp(request.hcp, calcService.calculateBogeyPoints(request.data.holes))
 
-            var caching = this.cacheCurrentRound;
+            var clear = this.clearCurrentRound;
 
             $http.post('/api/rounds/', request)
                 .success(function (storedId) {
-                    currentRound.id = storedId;
-                    caching();
-                    callback();
+                    clear();
+                    callback(storedId);
                 })
                 .error(function (error) {
                     console.log(error);
-                    callback("Failed to save round data");
+                    callback(null, "Failed to save round data");
                 });
         },
         listRounds: function (callback) {
@@ -129,13 +144,68 @@ services.factory('RoundService', ['$http', function ($http) {
 
             });
 
-            currentRound.strokes = strokes;
-            currentRound.toPar = strokes - gamePar;
+            currentRound.data.strokes = strokes;
+            currentRound.data.toPar = strokes - gamePar;
+        },
+        getRoundData : function(id, callback) {
+            $http.get('/api/rounds/' + id)
+                .success(function(data) {
+                   callback(data);
+                })
+                .error(function() {
+                   callback(null, "Failed to load round data");
+                });
         }
     }
 }]);
 
 services.factory('CalcService', [function () {
+
+    var hcpLevels = [
+        {
+            min: 0,
+            max: 4.4,
+            buffer: 35,
+            up: 0.1,
+            down: 0.1
+        },
+        {
+            min: 4.5,
+            max: 11.4,
+            buffer: 34,
+            up: 0.1,
+            down: 0.2
+        },
+        {
+            min:11.5,
+            max: 18.4,
+            buffer: 33,
+            up: 0.1,
+            down: 0.3
+        },
+        {
+            min: 18.5,
+            max: 26.4,
+            buffer: 32,
+            up: 0.1,
+            down: 0.4
+        },
+        {
+            min: 26.5,
+            max: 36.0,
+            buffer: 31,
+            up: 0.2,
+            down: 0.5
+        },
+        {
+            min: 37.0,
+            max: 54.0,
+            buffer: 0,
+            up: 0,
+            down: 1
+        }
+
+    ]
 
     return {
         calculateGameHcp: function (hcp, slope, cr, par) {
@@ -146,6 +216,38 @@ services.factory('CalcService', [function () {
             else {
                 return null;
             }
+        },
+        calculateNewHcp : function(hcp, bogeyPoints) {
+
+            var level = hcpLevels[0];
+
+            angular.forEach(hcpLevels, function(next) {
+               if(hcp >= next.min && hcp <= next.max) {
+                   level = next;
+               }
+            });
+
+            if(bogeyPoints > 36) {
+                var bogeyDiff = 36 - bogeyPoints;
+                return hcp - (bogeyDiff*level.down);
+            }
+            else if(bogeyPoints < level.buffer) {
+                return hcp + level.up;
+            }
+            else {
+                return hcp;
+            }
+        },
+        calculateBogeyPoints : function(holes) {
+            var points = 0;
+
+            angular.forEach(holes, function(hole) {
+               if(hole.strokes) {
+                   points += Math.max(0, (hole.gamePar+2)-hole.strokes);
+               }
+            });
+
+            return points;
         },
         analyseRound: function (roundData) {
 

@@ -6,22 +6,22 @@ controllers.controller('NavigationController', ['$scope', 'RoundService', '$loca
 
         $scope.newRound = function () {
 
-            var r = confirm("Are you sure want to start a new round? Data of the current round will be lost.");
-            if (r == true) {
-                roundService.newRound();
+            var conf;
+            var currentRound = roundService.getCurrentRound();
+
+            if(currentRound != null) {
+                conf = confirm("Are you sure want to start a new round? Data of the current round will be lost.");
+            }
+
+            if (conf || !currentRound) {
+                roundService.clearCurrentRound();
                 $location.path("/new");
             }
         }
     }]);
 
-
-controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'RoundService', '$location', 'CalcService', 'ProfileService',
-    function ($scope, courseService, roundService, $location, calcService, profileService) {
-
-        $scope.gameRunning = false;
-        $scope.putValues = [0,1,2,3,4,5,6];
-        $scope.totalValues = [1,2,3,4,5,6,7,8,9];
-        $scope.openPart = null;
+controllers.controller('NewRoundController', ['$scope', 'CourseService', 'CalcService', 'RoundService', '$location',
+    function ($scope, courseService, calcService, roundService, $location) {
 
         var hcp = courseService.loadHcp();
         $scope.hcp = hcp != null ? parseFloat(hcp) : 54.0;
@@ -49,6 +49,64 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
 
             $scope.gameHcp = gameHcp ? gameHcp : "-";
         }
+
+        $scope.startRound = function() {
+            $scope.selectedCourse.courseName = $scope.club.name;
+            roundService.startRound($scope.selectedCourse, $scope.hcp, $scope.gameHcp);
+            $location.path('/current').search('hole', 1);
+        }
+
+        $scope.init = function() {
+            //Load available courses
+            courseService.listClubs(function (data, error) {
+                if (error) {
+                    toastr.warning(error);
+                }
+                else {
+                    $scope.clubList = data;
+                }
+            });
+        }
+
+        $scope.$watch('selectedClub', function (newValue) {
+
+            if (newValue) {
+                courseService.getClubData(newValue, function (data, error) {
+                    if (data) {
+                        $scope.club = data;
+                    }
+                    else {
+                        toastr.warning(error);
+                    }
+                });
+            }
+            else {
+                $scope.club = null;
+            }
+        });
+
+        $scope.$watch('selectedCourse', function () {
+            $scope.calcGameHcp();
+        });
+        $scope.$watch('hcpFullValue', function () {
+            $scope.calcGameHcp();
+        });
+        $scope.$watch('hcpDigitsValue', function () {
+            $scope.calcGameHcp();
+        });
+
+        $scope.init();
+    }]);
+
+
+controllers.controller('CollectorController', ['$scope', 'CourseService', 'RoundService', '$location', 'CalcService', 'ProfileService', '$routeParams',
+    function ($scope, courseService, roundService, $location, calcService, profileService, $routeParam) {
+
+        $scope.gameRunning = false;
+        $scope.putValues = [0,1,2,3,4,5,6];
+        $scope.totalValues = [1,2,3,4,5,6,7,8,9];
+
+
 
         $scope.startRound = function () {
             $scope.selectedCourse.courseName = $scope.club.name;
@@ -81,6 +139,8 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             else {
                 $scope.holeNro = 18;
             }
+
+            $location.search('hole', $scope.holeNro);
         }
 
         $scope.nextHole = function () {
@@ -91,6 +151,7 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
                 $scope.holeNro = 1;
             }
 
+            $location.search('hole', $scope.holeNro);
             $('#opening').collapse('show');
         }
 
@@ -178,104 +239,20 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             return $scope.roundPoints() - $scope.parPoints();
         }
 
-        $scope.$watch('selectedClub', function (newValue, oldValue) {
+        $scope.completeRound = function () {
 
-            if (newValue) {
-                courseService.getClubData(newValue, function (data, error) {
-                    if (data) {
-                        $scope.club = data;
+            var r = confirm("Are you sure want to complete this round? You can not change values after completion.");
+            if (r == true) {
+                roundService.saveRoundData(function (id, error) {
+                    if (error) {
+                        toastr.warning(error);
                     }
                     else {
-                        toastr.warning(error);
+                        $scope.currentRound = null;
+                        $location.path("/completed/" + id);
                     }
                 });
             }
-            else {
-                $scope.club = null;
-            }
-        });
-
-        $scope.updatePosition = function () {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition($scope.updateLocation, $scope.locationUpdateError, {enableHighAccuracy: true});
-            } else {
-                $scope.coordinates = 'GPS not available';
-            }
-        }
-
-        $scope.updateLocation = function (position) {
-            $scope.$apply(function () {
-                $scope.coordinates = position.coords;
-
-                if ($scope.position) {
-                    $scope.calcDistance();
-                }
-
-                toastr.info("Position updated!");
-            });
-        }
-
-        $scope.startTracking = function () {
-            $scope.position = {};
-            $scope.position.start = $scope.coordinates;
-            $scope.position.startAccuracy = $scope.accuracy;
-        }
-
-        $scope.stopTracking = function () {
-            $scope.position = null;
-        }
-
-
-        $scope.calcDistance = function () {
-            /*
-            var lat1 = $scope.position.start.latitude;
-            var lon1 = $scope.position.start.longitude;
-
-            var lat2 = $scope.coordinates.latitude;
-            var lon2 = $scope.coordinates.longitude;
-
-            var R = 6378137; // m
-            var φ1 = lat1.toRad();
-            var φ2 = lat2.toRad();
-            var Δφ = (lat2 - lat1).toRad();
-            var Δλ = (lon2 - lon1).toRad();
-
-            var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-                Math.cos(φ1) * Math.cos(φ2) *
-                Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-            var d = R * c;
-
-            $scope.position.distance = d;*/
-        }
-
-        $scope.locationUpdateError = function (error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    toastr.warning("User denied the request for Geolocation.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    toastr.warning("Location information is unavailable.");
-                    break;
-                case error.TIMEOUT:
-                    toastr.warning("The request to get user location timed out.");
-                    break;
-                case error.UNKNOWN_ERROR:
-                    toastr.warning("An unknown error occurred.");
-                    break;
-            }
-        }
-
-        $scope.saveRound = function () {
-            roundService.saveRoundData(function (error) {
-                if (error) {
-                    toastr.warning(error);
-                }
-                else {
-                    toastr.info("Round saved successfully!");
-                }
-            });
         }
 
         $scope.calculateHoleTotal = function() {
@@ -302,45 +279,13 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             hole.strokes = total;
         }
 
-        $scope.filled = function(filledPart) {
-
-             /*
-            if(filledPart == 'opening') {
-                $('#' + filledPart).collapse('hide');
-
-                if($scope.currentRound.data.holes[$scope.holeNro].par == 3) {
-                    $('#puts').collapse('show');
-                }
-                else {
-                    $('#approach').collapse('show');
-                }
-            }
-            else if(filledPart == 'approach') {
-                if($scope.currentRound.data.holes[$scope.holeNro].par == 4) {
-                    $('#' + filledPart).collapse('hide');
-                    $('#puts').collapse('show');
-                }
-                else if($scope.currentRound.data.holes[$scope.holeNro].approach &&
-                    $scope.currentRound.data.holes[$scope.holeNro].approach.length == 2){
-                    $('#' + filledPart).collapse('hide');
-                    $('#puts').collapse('show');
-                }
-            }
-            else if(filledPart == 'chip') {
-                $('#chip').collapse('hide');
-            }
-            else if(filledPart == 'puts') {
-                $('#puts').collapse('hide');
-            }*/
-        }
-
         $scope.totalsOverridden = function(overridden) {
             $scope.currentRound.data.holes[$scope.holeNro].totalsOverridden = overridden;
         }
 
         $scope.mapStrokes = function(value) {
 
-            if($scope.currentRound.data.holes[$scope.holeNro]) {
+            if($scope.currentRound && $scope.currentRound.data.holes[$scope.holeNro]) {
                 var clubs = _.map($scope.currentRound.data.holes[$scope.holeNro][value], function(stroke) {return stroke.club});
 
                 if(clubs.length > 0) {
@@ -362,26 +307,19 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
             if (currentRound) {
                 $scope.currentRound = currentRound;
 
-                $scope.holeNro = 1;
+                var hole = parseInt($location.search().hole);
 
-                if($scope.currentRound.data) {
-                    for (var i = 1; i < 19; i++) {
-                        if (!$scope.currentRound.data.holes[i].strokes) {
-                            $scope.holeNro = i;
-                            break;
-                        }
-                    }
+                if(hole) {
+                    $scope.holeNro = hole;
                 }
-
+                else {
+                    $scope.holeNro = 1;
+                }
             }
             else {
-                //Load available courses
-                courseService.listClubs(function (data, error) {
-                    if (data) {
-                        $scope.clubList = data;
-                    }
-                });
+                $location.path('/new');
             }
+
 
             $scope.chipClubs = profileService.getChipClubs();
             $scope.approachClubs = profileService.getApproachClubs();
@@ -389,27 +327,19 @@ controllers.controller('CourseSelectController', ['$scope', 'CourseService', 'Ro
 
         }
 
-
-        $scope.$watch('selectedCourse', function (newValue, oldValue) {
-            $scope.calcGameHcp();
-        });
-        $scope.$watch('hcpFullValue', function (newValue, oldValue) {
-            $scope.calcGameHcp();
-        });
-        $scope.$watch('hcpDigitsValue', function (newValue, oldValue) {
-            $scope.calcGameHcp();
-        });
-
         $scope.init();
 
-        $scope.$watch('currentRound.data', function (newValue, oldValue) {
+        $scope.$watch('currentRound.data', function () {
 
-            if(!$scope.currentRound.data.holes[$scope.holeNro].totalsOverridden) {
+
+            if($scope.currentRound && !$scope.currentRound.data.holes[$scope.holeNro].totalsOverridden) {
                 $scope.calculateHoleTotal();
             }
 
-            roundService.calculateStrokes();
-            roundService.cacheCurrentRound();
+            if($scope.currentRound) {
+                roundService.calculateStrokes();
+                roundService.cacheCurrentRound();
+            }
         }, true);
 
 
@@ -453,6 +383,10 @@ controllers.controller('RoundListController', ['$scope', 'CourseService', 'Round
                toastr.warning(error);
            }
        });
+
+       $scope.open = function(header) {
+           $location.path('/overview/' + header.id);
+       }
     }]);
 
 controllers.controller('SettingsController', ['$scope', 'ProfileService',
@@ -483,6 +417,11 @@ controllers.controller('ErrorListController', ['$scope', 'ErrorService',
 controllers.controller('AboutController', ['$scope', 'RoundService',
     function ($scope, roundService) {
 
-        $scope.version = '1.2.0';
+        $scope.version = '1.3.0';
         $scope.deviceId = roundService.getDeviceId();
+    }]);
+
+controllers.controller('CompletionController', ['$scope', '$routeParams',
+    function ($scope, $routeParams) {
+        $scope.id = $routeParams.id;
     }]);
