@@ -103,10 +103,7 @@ controllers.controller('CollectorController', ['$scope', 'CourseService', 'Round
     function ($scope, courseService, roundService, $location, calcService, profileService, $routeParam) {
 
         $scope.gameRunning = false;
-        $scope.putValues = [0,1,2,3,4,5,6];
         $scope.totalValues = [1,2,3,4,5,6,7,8,9];
-
-
 
         $scope.startRound = function () {
             $scope.selectedCourse.courseName = $scope.club.name;
@@ -273,7 +270,7 @@ controllers.controller('CollectorController', ['$scope', 'CourseService', 'Round
             }
 
             if(hole.puts) {
-                total += hole.puts;
+                total += hole.puts.length;
             }
 
             hole.strokes = total;
@@ -324,6 +321,7 @@ controllers.controller('CollectorController', ['$scope', 'CourseService', 'Round
             $scope.chipClubs = profileService.getChipClubs();
             $scope.approachClubs = profileService.getApproachClubs();
             $scope.openingClubs = profileService.getOpeningClubs();
+            $scope.putDistances = profileService.getPutDistances();
 
         }
 

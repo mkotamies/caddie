@@ -4,7 +4,7 @@ services.factory('CourseService', ['$http', 'ErrorService', function ($http, $re
 
     return {
         listClubs: function (callback) {
-            callback(["Hill Side Valley", "Paloheina Golf", "Pickala Golf Forest", "Pickala Golf Park", "Vihti Golf"]);
+            callback(["Hill Side Valley", "Paloheina Golf", "Pickala Golf Forest", "Pickala Golf Park", "Pickala Golf Seaside", "Vihti Golf"]);
         },
         getClubData: function (club, callback) {
 
@@ -342,6 +342,9 @@ services.factory('ProfileService', [function () {
         },
         getApproachClubs: function () {
             return this.getClubs().approach;
+        },
+        getPutDistances : function () {
+            return ["any", "1m", "2m", "3m", "4m", "5m", "6m", "7m", "8m", "9m", "10m", "more"]
         }
 
 

@@ -1,12 +1,12 @@
 [
     {
-        "name" : "Vihti Golf",
-        "courses" : [
+        "name": "Vihti Golf",
+        "courses": [
             {
                 "tee": "yellow",
                 "slope": 127,
                 "cr": 71.3,
-                "par" : 72,
+                "par": 72,
                 "holes": {
                     "1": {
                         "par": 4,
@@ -104,7 +104,7 @@
                 "tee": "red",
                 "slope": 119,
                 "cr": 67.4,
-                "par" : 72,
+                "par": 72,
                 "holes": {
                     "1": {
                         "par": 4,
@@ -201,13 +201,13 @@
         ]
     },
     {
-        "name" : "Pickala Golf Forest",
-        "courses" : [
+        "name": "Pickala Golf Forest",
+        "courses": [
             {
                 "tee": "yellow",
                 "slope": 136,
                 "cr": 70.7,
-                "par" : 72,
+                "par": 72,
                 "holes": {
                     "1": {
                         "par": 4,
@@ -305,7 +305,7 @@
                 "tee": "red",
                 "slope": 126,
                 "cr": 65.7,
-                "par" : 72,
+                "par": 72,
                 "holes": {
                     "1": {
                         "par": 4,
@@ -402,13 +402,13 @@
         ]
     },
     {
-        "name" : "Pickala Golf Park",
-        "courses" : [
+        "name": "Pickala Golf Park",
+        "courses": [
             {
                 "tee": "yellow",
                 "slope": 123,
                 "cr": 71.9,
-                "par" : 72,
+                "par": 72,
                 "holes": {
                     "1": {
                         "par": 5,
@@ -505,13 +505,214 @@
         ]
     },
     {
+        "name": "Pickala Golf Seaside",
+        "courses": [
+            {
+                "tee": "yellow",
+                "slope": 128,
+                "cr": 70.0,
+                "par": 71,
+                "holes": {
+                    "1": {
+                        "par": 4,
+                        "length": 336,
+                        "hcp": 10
+                    },
+                    "2": {
+                        "par": 3,
+                        "length": 169,
+                        "hcp": 15
+                    },
+                    "3": {
+                        "par": 5,
+                        "length": 525,
+                        "hcp": 3
+                    },
+                    "4": {
+                        "par": 4,
+                        "length": 377,
+                        "hcp": 7
+                    },
+                    "5": {
+                        "par": 5,
+                        "length": 468,
+                        "hcp": 11
+                    },
+                    "6": {
+                        "par": 3,
+                        "length": 156,
+                        "hcp": 17
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 331,
+                        "hcp": 9
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 71,
+                        "hcp": 13
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 294,
+                        "hcp": 18
+                    },
+                    "10": {
+                        "par": 4,
+                        "length": 322,
+                        "hcp": 4
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 152,
+                        "hcp": 12
+                    },
+                    "12": {
+                        "par": 5,
+                        "length": 421,
+                        "hcp": 16
+                    },
+                    "13": {
+                        "par": 4,
+                        "length": 344,
+                        "hcp": 1
+                    },
+                    "14": {
+                        "par": 4,
+                        "length": 339,
+                        "hcp": 6
+                    },
+                    "15": {
+                        "par": 4,
+                        "length": 324,
+                        "hcp": 5
+                    },
+                    "16": {
+                        "par": 5,
+                        "length": 453,
+                        "hcp": 2
+                    },
+                    "17": {
+                        "par": 4,
+                        "length": 349,
+                        "hcp": 8
+                    },
+                    "18": {
+                        "par": 3,
+                        "length": 125,
+                        "hcp": 14
+                    }
+                }
+            },
+            {
+                "tee": "red",
+                "slope": 120,
+                "cr": 66.0,
+                "par": 71,
+                "holes": {
+                    "1": {
+                        "par": 4,
+                        "length": 285,
+                        "hcp": 10
+                    },
+                    "2": {
+                        "par": 3,
+                        "length": 120,
+                        "hcp": 15
+                    },
+                    "3": {
+                        "par": 5,
+                        "length": 445,
+                        "hcp": 3
+                    },
+                    "4": {
+                        "par": 4,
+                        "length": 311,
+                        "hcp": 7
+                    },
+                    "5": {
+                        "par": 5,
+                        "length": 401,
+                        "hcp": 11
+                    },
+                    "6": {
+                        "par": 3,
+                        "length": 112,
+                        "hcp": 17
+                    },
+                    "7": {
+                        "par": 4,
+                        "length": 277,
+                        "hcp": 9
+                    },
+                    "8": {
+                        "par": 3,
+                        "length": 71,
+                        "hcp": 13
+                    },
+                    "9": {
+                        "par": 4,
+                        "length": 246,
+                        "hcp": 18
+                    },
+                    "10": {
+                        "par": 4,
+                        "length": 273,
+                        "hcp": 4
+                    },
+                    "11": {
+                        "par": 3,
+                        "length": 124,
+                        "hcp": 12
+                    },
+                    "12": {
+                        "par": 5,
+                        "length": 341,
+                        "hcp": 16
+                    },
+                    "13": {
+                        "par": 4,
+                        "length": 277,
+                        "hcp": 1
+                    },
+                    "14": {
+                        "par": 4,
+                        "length": 298,
+                        "hcp": 6
+                    },
+                    "15": {
+                        "par": 4,
+                        "length": 271,
+                        "hcp": 5
+                    },
+                    "16": {
+                        "par": 5,
+                        "length": 398,
+                        "hcp": 2
+                    },
+                    "17": {
+                        "par": 4,
+                        "length": 306,
+                        "hcp": 8
+                    },
+                    "18": {
+                        "par": 3,
+                        "length": 108,
+                        "hcp": 14
+                    }
+                }
+            }
+        ]
+    },
+    {
         "name": "Hill Side Valley",
         "courses": [
             {
                 "tee": "yellow",
                 "slope": 123,
                 "cr": 71.1,
-                "par" : 71,
+                "par": 71,
                 "holes": {
                     "1": {
                         "par": 3,
@@ -609,7 +810,7 @@
                 "tee": "red",
                 "slope": 115,
                 "cr": 66.9,
-                "par" : 71,
+                "par": 71,
                 "holes": {
                     "1": {
                         "par": 3,
@@ -706,13 +907,13 @@
         ]
     },
     {
-        "name" : "Paloheina Golf",
-        "courses" : [
+        "name": "Paloheina Golf",
+        "courses": [
             {
                 "tee": "yellow",
                 "slope": 117,
                 "cr": 68.3,
-                "par" : 72,
+                "par": 72,
                 "holes": {
                     "1": {
                         "par": 4,
@@ -810,7 +1011,7 @@
                 "tee": "red",
                 "slope": 108,
                 "cr": 63.6,
-                "par" : 72,
+                "par": 72,
                 "holes": {
                     "1": {
                         "par": 4,
