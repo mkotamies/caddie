@@ -5,6 +5,8 @@ var app = angular.module('web', [
     'ngRoute',
     'services',
     'controllers',
+    'analysisservices',
+    'analysiscontrollers',
     'directives',
     'ngAnimate',
     'ngTouch',
@@ -15,14 +17,14 @@ var app = angular.module('web', [
 
         $routeProvider.when('/current', {templateUrl: 'partials/collector.html', controller: 'CollectorController', reloadOnSearch: false});
         $routeProvider.when('/scorecard', {templateUrl: 'partials/scorecard.html', controller: 'ScorecardController'});
-        $routeProvider.when('/completed/:id', {templateUrl: 'partials/completedround.html'});
+        $routeProvider.when('/completed/:id', {templateUrl: 'partials/completedround.html', controller:'CompletedRoundController'});
 
         $routeProvider.when('/list', {templateUrl: 'partials/roundlist.html', controller: 'RoundListController'});
 
-        $routeProvider.when('/overview/:id', {templateUrl: 'partials/overview.html', controller: 'OverviewController'});
+        $routeProvider.when('/view/:id/overview', {templateUrl: 'partials/overview.html', controller: 'OverviewController'});
+        $routeProvider.when('/view/:id/holes', {templateUrl: 'partials/holeanalysis.html', controller: 'HoleAnalysisController'});
+        $routeProvider.when('/view/:id/flow', {templateUrl: 'partials/flowanalysis.html', controller: 'FlowController'});
 
-        $routeProvider.when('/analysis/holes', {templateUrl: 'partials/holeanalysis.html', controller: 'HoleAnalysisController'});
-        $routeProvider.when('/analysis/flow', {templateUrl: 'partials/flowanalysis.html', controller: 'FlowController'});
         $routeProvider.when('/errors', {templateUrl: 'partials/errorlist.html', controller: 'ErrorListController'});
         $routeProvider.when('/settings', {templateUrl: 'partials/settings.html', controller: 'SettingsController'});
         $routeProvider.when('/about', {templateUrl: 'partials/about.html', controller: 'AboutController'});
@@ -167,7 +169,8 @@ var app = angular.module('web', [
         roundService.loadCurrentRound();
     }]);
 
-angular.module('controllers', ['services']);
+angular.module('controllers', ['services'])
+angular.module('analysiscontrollers', ['analysisservices']);
 
 app.filter('percentage', ['$filter', function ($filter) {
     return function (input, decimals) {

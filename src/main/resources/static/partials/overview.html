@@ -3,13 +3,13 @@
     <div class="pure-menu pure-menu-open pure-menu-horizontal"
          style="border-bottom: 1px solid lightgrey; margin-bottom: 10px;">
         <ul>
-            <li class="pure-menu-selected"><a href="#/overview/{{id}}}">Overview</a></li>
-            <li><a href="#/analysis/holes">Holes</a></li>
-            <li><a href="#/analysis/flow">Flow</a></li>
+            <li class="pure-menu-selected"><a href="#/view/{{id}}/overview">Overview</a></li>
+            <li><a href="#/view/{{id}}/holes">Holes</a></li>
+            <li><a href="#/view/{{id}}/flow">Flow</a></li>
         </ul>
     </div>
     <h2>{{round.courseName}}</h2>
-    <h4>{{round.timestamp | date:'dd.mm. hh:MM'}}</h4>
+    <h4>{{round.timestamp | date:'dd.MM. HH:mm'}}</h4>
 
     <div class="row text-center">
         <div class="col-xs-5">Strokes</div>

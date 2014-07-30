@@ -19,6 +19,8 @@ public class Round {
 	
 	public RoundData data;
 	
+	public String version;
+	
 	public void generateId() {
 		this.id = UUID.randomUUID().toString();
 		this.timestamp = new DateTime();

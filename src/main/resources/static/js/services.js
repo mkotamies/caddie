@@ -4,7 +4,7 @@ services.factory('CourseService', ['$http', 'ErrorService', function ($http, $re
 
     return {
         listClubs: function (callback) {
-            callback(["Hill Side Valley", "Paloheina Golf", "Pickala Golf Forest", "Pickala Golf Park", "Pickala Golf Seaside", "Vihti Golf"]);
+            callback(["Hiekkaharju", "Hill Side Valley", "Paloheina Golf", "Pickala Golf Forest", "Pickala Golf Park", "Pickala Golf Seaside", "Vihti Golf"]);
         },
         getClubData: function (club, callback) {
 
@@ -57,6 +57,7 @@ services.factory('RoundService', ['$http', 'CourseService', 'CalcService', funct
         },
         startRound: function (selectedCourse, hcp, gameHcp) {
             currentRound = {};
+            currentRound.version = this.getCollectorVersion();
             currentRound.courseName = selectedCourse.courseName;
             currentRound.hcp = hcp;
             currentRound.gameHcp = gameHcp;
@@ -87,6 +88,10 @@ services.factory('RoundService', ['$http', 'CourseService', 'CalcService', funct
             var request = angular.copy(currentRound);
             request.deviceId = this.getDeviceId();
             request.newHcp = calcService.calculateNewHcp(request.hcp, calcService.calculateBogeyPoints(request.data.holes))
+
+            angular.forEach(request.data.holes, function(hole) {
+                delete hole.totalsOverridden;
+            })
 
             var clear = this.clearCurrentRound;
 
@@ -149,12 +154,15 @@ services.factory('RoundService', ['$http', 'CourseService', 'CalcService', funct
         },
         getRoundData : function(id, callback) {
             $http.get('/api/rounds/' + id)
-                .success(function(data) {
+                .success(function(data, status) {
                    callback(data);
                 })
                 .error(function() {
                    callback(null, "Failed to load round data");
                 });
+        },
+        getCollectorVersion : function() {
+            return "1.0";
         }
     }
 }]);
